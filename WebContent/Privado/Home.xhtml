@@ -1,0 +1,179 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<style type="text/css">
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;
+	margin: 0px;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+
+form {
+	display: block;
+	margin-top: 0em;
+	margin-block-end: 1px;
+}
+</style>
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/5.12.0/css/all.min-jsf.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+
+</h:head>
+
+<h:body>
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="108" resizable="false"
+			style="margin-top: 0px; padding-bottom: 0px;">
+			<h3 style="margin: 5px;">
+				<h:outputText
+					value="Usuário Logado: #{loginControle.usuarioLogado.nome}" />
+			</h3>
+			<div class="card">
+				<h:form>
+					<p:growl id="messages" />
+
+					<p:menubar>
+						<p:menuitem value="Principal" url="Home.xhtml"
+							icon="pi pi-fw pi-bookmark" />
+
+						<p:submenu label="Cadastros" icon="pi pi-fw pi-file">
+							<p:submenu label="Básicos" icon="pi pi-fw pi-plus">
+								<p:menuitem value="Bookmark" icon="pi pi-fw pi-bookmark" />
+								<p:menuitem value="Video" icon="pi pi-fw pi-video" />
+							</p:submenu>
+
+							<p:menuitem value="Pessoa" url="PessoaForm.xhtml" target="centro"
+								icon="pi pi-fw pi-trash" />
+							<p:menuitem value="Produtos" url="ProdutosList.xhtml"
+								target="centro" icon="pi pi-fw pi-external-link" />
+
+							<p:menuitem value="Pessoa Popup" icon="pi pi-fw pi-trash"
+								actionListener="#{homeBean.abrirPopup('PessoaForm.xhtml', 600, 600, true)}" />
+
+							<p:menuitem value="Produtos popup"
+								icon="pi pi-fw pi-external-link"
+								actionListener="#{homeBean.abrirPopup('ProdutosList.xhtml', 600, 800, false)}" />
+
+
+
+
+						</p:submenu>
+
+
+						<p:menuitem value="Sair" icon="pi pi-fw pi-power-off"
+							action="#{loginControle.sair}" ajax="false" />
+					</p:menubar>
+				</h:form>
+			</div>
+
+
+			<div class="card">
+				<h:form target="centro">
+					<p:growl id="messages" showDetail="true" />
+
+					<p:toolbar style="padding-top: 0px; padding-bottom: 0px;">
+						<p:toolbarGroup>
+							<p:commandButton title="Pessoas" icon="fa fa-undo"
+								styleClass="p-mr-2" ajax="false" action="PessoaForm.xhtml" />
+
+							<p:commandButton title="Tipo Eevento" icon="fa fa-undo"
+								styleClass="p-mr-2" ajax="false" action="TipoEventoForm.xhtml" />
+
+
+							<p:commandButton type="button" value="Open"
+								icon="pi pi-folder-open" styleClass="ui-button-success" />
+
+							<i class="pi pi-bars p-px-2" />
+
+							<p:commandButton type="button" title="Save" icon="pi pi-save"
+								styleClass="ui-button-help p-mr-2" />
+							<p:commandButton type="button" title="Print" icon="pi pi-print"
+								styleClass="ui-button-warning p-mr-2" />
+							<p:commandButton type="button" title="Delete" icon="pi pi-trash"
+								styleClass="ui-button-danger" />
+						</p:toolbarGroup>
+
+						<p:toolbarGroup name="right">
+							<p:menuButton value="Options">
+								<p:menuitem value="Save" action="#{toolbarView.save}"
+									update="messages" icon="pi pi-save" />
+								<p:menuitem value="Update" action="#{toolbarView.update}"
+									update="messages" icon="pi pi-refresh" />
+								<p:menuitem value="Delete" action="#{toolbarView.delete}"
+									ajax="false" icon="pi pi-times" />
+								<p:menuitem value="Homepage" url="http://www.primefaces.org"
+									icon="pi pi-home" />
+							</p:menuButton>
+						</p:toolbarGroup>
+
+					</p:toolbar>
+				</h:form>
+			</div>
+
+
+
+		</p:layoutUnit>
+
+
+
+
+		<p:layoutUnit position="west" size="250" header="Menu"
+			resizable="true">
+
+			<p:growl id="messages" showDetail="true" />
+
+
+			<h:form>
+				<div class="card">
+					<p:menu style="width:100%;">
+						<p:menuitem value="Principal" url="Home.xhtml"
+							icon="pi pi-fw pi-bookmark" />
+						<p:submenu label="Cadastros">
+							<p:menuitem value="Pessoa" url="PessoaForm.xhtml" target="centro"
+								icon="pi pi-fw pi-trash" />
+
+							<p:menuitem value="Produtos" url="ProdutosList.xhtml"
+								target="centro" icon="pi pi-fw pi-external-link" />
+
+							<p:menuitem value="Tipo Evento" url="TipoEventoForm.xhtml"
+								target="centro" icon="pi pi-fw pi-trash" />
+
+						</p:submenu>
+						<p:submenu label="Navigations">
+							<p:menuitem value="Website" url="http://www.primefaces.org"
+								icon="pi pi-external-link" />
+							<p:menuitem value="Internal" icon="pi pi-upload" />
+						</p:submenu>
+					</p:menu>
+				</div>
+			</h:form>
+
+
+		</p:layoutUnit>
+
+
+
+
+		<p:layoutUnit position="center">
+			<iframe name="centro" id="centro"
+				style="width: 100%; height: 100%; background-color: #FFFFFF;" />
+
+
+		</p:layoutUnit>
+
+
+	</p:layout>
+
+
+</h:body>
+</html>

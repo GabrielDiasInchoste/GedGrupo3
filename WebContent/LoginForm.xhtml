@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<div class="card">
+		<h:form>
+			<h:panelGrid columns="4" cellpadding="7">
+				<h:outputLabel value="Email" />
+				<p:inputText id="email" value="#{loginControle.email}"
+					required="true">
+				</p:inputText>
+
+				<h:outputLabel value="Senha" />
+				<p:inputText id="senha" value="#{loginControle.senha}"
+					required="true">
+				</p:inputText>
+			</h:panelGrid>
+
+			<p:commandButton value="Entrar" ajax="true" icon="pi pi-check"
+				action="#{loginControle.entrar}"></p:commandButton>
+
+		</h:form>
+	</div>
+
+</h:body>
+</html>
+

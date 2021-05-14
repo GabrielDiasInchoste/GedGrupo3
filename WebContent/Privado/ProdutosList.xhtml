@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+	<h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+
+</h:head>
+
+<h:body>
+
+
+	<p:panel id="consultar" visible="#{!produtoBean.editando}">
+		<h:form>
+            
+			<p:commandButton value="Incluir" ajax="true" update="consultar editar"
+				    icon="fa fa-plus" 
+					action="#{produtoBean.incluir}"></p:commandButton>
+					
+			<p:commandButton value="Alterar" ajax="true" update="consultar editar"
+				    icon="fa fa-edit" disabled="#{produtoBean.selecionado == null}"
+					action="#{produtoBean.alterar}"></p:commandButton> 
+					           
+			<p:commandButton value="Excluir" ajax="true" update="consultar editar"
+				    icon="fa fa-remove" disabled="#{produtoBean.selecionado == null}"
+					action="#{produtoBean.excluir}">
+			    <p:confirm header="Confirmação" 
+			               message="Confirma a exclusão?" 
+			               icon="pi pi-exclamation-triangle"/>		
+			</p:commandButton>            
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
+	        </p:confirmDialog>
+
+			<p:dataTable var="p" value="#{produtoBean.lista}" rows="10"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				currentPageReportTemplate="Mostrando de {startRecord} até {endRecord} de {totalRecords}"
+				rowsPerPageTemplate="10,30,60" selectionMode="single"
+				selection="#{produtoBean.selecionado}" rowKey="#{p.id}"
+				emptyMessage="Nenhum registro encontrado."
+				>
+
+				<p:ajax event="rowSelect" update="consultar editar" />
+
+
+				<p:column headerText="Id" 
+							sortBy="#{p.id}" sortOrder="asc" 
+							filterBy="#{p.id}" filterMatchMode="exact">
+					<h:outputText value="#{p.id}" />
+				</p:column>
+
+				<p:column headerText="Nome" 
+							sortBy="#{p.nome}"
+							filterBy="#{p.nome}" filterMatchMode="contains" >
+					<h:outputText value="#{p.nome}" />
+				</p:column>
+
+				<p:column headerText="Preço" 
+							sortBy="#{p.preco}" 
+							filterBy="#{p.preco}" filterMatchMode="exact">
+					<h:outputText value="#{p.preco}">
+					    <f:convertNumber minFractionDigits="2"></f:convertNumber>
+					</h:outputText>
+				</p:column>
+
+
+			</p:dataTable>
+		</h:form>
+
+	</p:panel>
+
+
+	<p:panel id="editar" visible="#{produtoBean.editando}">
+
+		<h:form>
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Id"></p:outputLabel>
+				<p:inputNumber decimalPlaces="0" disabled="true" placeholder="Auto"
+					value="#{produtoBean.selecionado.id}"></p:inputNumber>
+
+				<p:outputLabel value="Nome"></p:outputLabel>
+				<p:inputText value="#{produtoBean.selecionado.nome}"></p:inputText>
+
+				<p:outputLabel value="Preço"></p:outputLabel>
+				<p:inputNumber value="#{produtoBean.selecionado.preco}"></p:inputNumber>
+
+				<p:commandButton value="Salvar" ajax="true" update="consultar editar"
+				    icon="fa fa-save"
+					action="#{produtoBean.salvar}"></p:commandButton>
+
+				<p:commandButton value="Cancelar" ajax="true" update="consultar editar"
+				    icon="fa fa-undo" immediate="true"
+					action="#{produtoBean.cancelar}"></p:commandButton>					
+
+			</p:panelGrid>
+		</h:form>
+		
+	   <p:growl id="msg"></p:growl> 
+
+   </p:panel>
+
+
+
+
+
+</h:body>
+</html>

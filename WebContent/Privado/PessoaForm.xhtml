@@ -1,0 +1,169 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/5.12.0/css/all.min-jsf.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+
+</h:head>
+
+<h:body>
+
+
+	<p:panel id="consultar" visible="#{!pessoaBean.editando}">
+		<h:form>
+
+			<p:commandButton value="Incluir" ajax="true"
+				update="consultar editar" icon="fa fa-plus"
+				action="#{pessoaBean.incluir}"></p:commandButton>
+
+			<p:commandButton value="Alterar" ajax="true"
+				update="consultar editar" icon="fa fa-edit"
+				disabled="#{pessoaBean.selecionado == null}"
+				action="#{pessoaBean.alterar}"></p:commandButton>
+
+			<p:commandButton value="Excluir" ajax="true"
+				update="consultar editar" icon="fa fa-remove"
+				disabled="#{pessoaBean.selecionado == null}"
+				action="#{pessoaBean.excluir}">
+				<p:confirm header="Confirma��o" message="Confirma a exclus�o?"
+					icon="pi pi-exclamation-triangle" />
+			</p:commandButton>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				responsive="true" width="350">
+				<p:commandButton value="N�o" type="button"
+					styleClass="ui-confirmdialog-no ui-button-flat" />
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" />
+			</p:confirmDialog>
+
+			<p:dataTable var="p" value="#{pessoaBean.lista}" rows="10"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				currentPageReportTemplate="Mostrando de {startRecord} até {endRecord} de {totalRecords}"
+				rowsPerPageTemplate="10,30,60" selectionMode="single"
+				selection="#{pessoaBean.selecionado}" rowKey="#{p.id}"
+				emptyMessage="Nenhum registro encontrado.">
+
+				<p:ajax event="rowSelect" update="consultar editar" />
+
+
+				<p:column headerText="Id" sortBy="#{p.id}" sortOrder="asc"
+					filterBy="#{p.id}" filterMatchMode="exact">
+					<h:outputText value="#{p.id}" />
+				</p:column>
+
+				<p:column headerText="Nome" sortBy="#{p.nome}" filterBy="#{p.nome}"
+					filterMatchMode="contains">
+					<h:outputText value="#{p.nome}" />
+				</p:column>
+
+				<p:column headerText="Telefone" sortBy="#{p.telefone}"
+					filterBy="#{p.telefone}" filterMatchMode="exact">
+					<h:outputText value="#{p.telefone}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Email" sortBy="#{p.email}"
+					filterBy="#{p.email}" filterMatchMode="contains">
+					<h:outputText value="#{p.email}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Senha" sortBy="#{p.senha}"
+					filterBy="#{p.senha}" filterMatchMode="contains">
+					<p:password value="#{p.senha}"></p:password>
+				</p:column> 
+
+				<p:column headerText="Documento" sortBy="#{p.documento}"
+					filterBy="#{p.documento}" filterMatchMode="contains">
+					<h:outputText value="#{p.documento}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Tipo Documento" sortBy="#{p.tipoDocumento}"
+					filterBy="#{p.tipoDocumento}" filterMatchMode="contains">
+					<p:selectOneButton value="#{p.tipoDocumento}">
+						<f:selectItem itemLabel="CPF" itemValue="CPF" />
+						<f:selectItem itemLabel="RG" itemValue="RG" />
+						<f:selectItem itemLabel="Outro" itemValue="Outro" />
+					</p:selectOneButton>
+				</p:column>
+
+				<p:column headerText="Nacionalidade" sortBy="#{p.nacionalidade}"
+					filterBy="#{p.nacionalidade}" filterMatchMode="contains">
+					<p:selectOneButton value="#{p.nacionalidade}">
+						<f:selectItem itemLabel="Brasileira" itemValue="Brasileira" />
+						<f:selectItem itemLabel="Outra" itemValue="Outra" />
+					</p:selectOneButton>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+	</p:panel>
+
+
+	<p:panel id="editar" visible="#{pessoaBean.editando}">
+
+		<h:form>
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Id"></p:outputLabel>
+				<p:inputNumber decimalPlaces="0" disabled="true" placeholder="Auto"
+					value="#{pessoaBean.selecionado.id}"></p:inputNumber>
+
+				<p:outputLabel value="Nome"></p:outputLabel>
+				<p:inputText value="#{pessoaBean.selecionado.nome}"></p:inputText>
+
+				<p:outputLabel value="Telefone"></p:outputLabel>
+				<p:inputNumber value="#{pessoaBean.selecionado.telefone}"></p:inputNumber>
+
+				<p:outputLabel value="Email"></p:outputLabel>
+				<p:inputText value="#{pessoaBean.selecionado.email}"></p:inputText>
+
+				<p:outputLabel value="Senha"></p:outputLabel>
+				<p:password id="pwd1" match="pwd2" value="#{pessoaBean.selecionado.senha}"></p:password>
+
+				<p:outputLabel value="Confirmar Senha"></p:outputLabel>
+				<p:password id="pwd2" value="#{pessoaBean.selecionado.senha}"></p:password>
+
+				<p:outputLabel value="Documento"></p:outputLabel>
+				<p:inputText value="#{pessoaBean.selecionado.documento}"></p:inputText>
+
+				<p:outputLabel value="Tipo Documento"></p:outputLabel>
+				<p:selectOneButton value="#{pessoaBean.selecionado.tipoDocumento}">
+					<f:selectItem itemLabel="CPF" itemValue="CPF" />
+					<f:selectItem itemLabel="RG" itemValue="RG" />
+					<f:selectItem itemLabel="Outro" itemValue="Outro" />
+				</p:selectOneButton>
+
+				<p:outputLabel value="Nacionalidade"></p:outputLabel>
+				<p:selectOneButton value="#{pessoaBean.selecionado.nacionalidade}">
+					<f:selectItem itemLabel="Brasileira" itemValue="Brasileira" />
+					<f:selectItem itemLabel="Outra" itemValue="Outra" />
+				</p:selectOneButton>
+
+
+				<p:commandButton value="Salvar" ajax="true"
+					update="consultar editar" icon="fa fa-save"
+					action="#{pessoaBean.salvar}"></p:commandButton>
+
+				<p:commandButton value="Cancelar" ajax="true"
+					update="consultar editar" icon="fa fa-undo" immediate="true"
+					action="#{pessoaBean.cancelar}"></p:commandButton>
+
+			</p:panelGrid>
+		</h:form>
+
+		<p:growl id="msg"></p:growl>
+
+	</p:panel>
+
+
+
+
+
+</h:body>
+</html>
