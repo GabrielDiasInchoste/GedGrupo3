@@ -30,13 +30,13 @@
 				update="consultar editar" icon="fa fa-remove"
 				disabled="#{pessoaBean.selecionado == null}"
 				action="#{pessoaBean.excluir}">
-				<p:confirm header="Confirma��o" message="Confirma a exclus�o?"
+				<p:confirm header="Confirmação" message="Confirma a exclusão?"
 					icon="pi pi-exclamation-triangle" />
 			</p:commandButton>
 
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 				responsive="true" width="350">
-				<p:commandButton value="N�o" type="button"
+				<p:commandButton value="Não" type="button"
 					styleClass="ui-confirmdialog-no ui-button-flat" />
 				<p:commandButton value="Sim" type="button"
 					styleClass="ui-confirmdialog-yes" />
@@ -118,7 +118,7 @@
 				<p:inputText value="#{pessoaBean.selecionado.nome}"></p:inputText>
 
 				<p:outputLabel value="Telefone"></p:outputLabel>
-				<p:inputNumber value="#{pessoaBean.selecionado.telefone}"></p:inputNumber>
+				<p:inputMask id="telefone" value="#{maskView.pessoaBean.selecionado.telefone}" mask="(999) 9999-9999" validateMask="true"></p:inputMask>
 
 				<p:outputLabel value="Email"></p:outputLabel>
 				<p:inputText value="#{pessoaBean.selecionado.email}"></p:inputText>

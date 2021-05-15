@@ -14,22 +14,22 @@
 <h:body>
 
 
-	<p:panel id="consultar" visible="#{!tipoEventoBean.editando}">
+	<p:panel id="consultar" visible="#{!assinaBean.editando}">
 		<h:form>
 
 			<p:commandButton value="Incluir" ajax="true"
 				update="consultar editar" icon="fa fa-plus"
-				action="#{tipoEventoBean.incluir}"></p:commandButton>
+				action="#{assinaBean.incluir}"></p:commandButton>
 
 			<p:commandButton value="Alterar" ajax="true"
 				update="consultar editar" icon="fa fa-edit"
-				disabled="#{tipoEventoBean.selecionado == null}"
-				action="#{tipoEventoBean.alterar}"></p:commandButton>
+				disabled="#{assinaBean.selecionado == null}"
+				action="#{assinaBean.alterar}"></p:commandButton>
 
 			<p:commandButton value="Excluir" ajax="true"
 				update="consultar editar" icon="fa fa-remove"
-				disabled="#{tipoEventoBean.selecionado == null}"
-				action="#{tipoEventoBean.excluir}">
+				disabled="#{assinaBean.selecionado == null}"
+				action="#{assinaBean.excluir}">
 				<p:confirm header="Confirmação" message="Confirma a exclusão?"
 					icon="pi pi-exclamation-triangle" />
 			</p:commandButton>
@@ -42,12 +42,12 @@
 					styleClass="ui-confirmdialog-yes" />
 			</p:confirmDialog>
 
-			<p:dataTable var="p" value="#{tipoEventoBean.lista}" rows="10"
+			<p:dataTable var="p" value="#{assinaBean.lista}" rows="10"
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				currentPageReportTemplate="Mostrando de {startRecord} até {endRecord} de {totalRecords}"
 				rowsPerPageTemplate="10,30,60" selectionMode="single"
-				selection="#{tipoEventoBean.selecionado}" rowKey="#{p.id}"
+				selection="#{assinaBean.selecionado}" rowKey="#{p.id}"
 				emptyMessage="Nenhum registro encontrado.">
 
 				<p:ajax event="rowSelect" update="consultar editar" />
@@ -55,12 +55,27 @@
 
 				<p:column headerText="Id" sortBy="#{p.id}" sortOrder="asc"
 					filterBy="#{p.id}" filterMatchMode="exact">
-					<h:outputText value="#{p.id}" required="true" />
+					<h:outputText value="#{p.id}" />
 				</p:column>
 
-				<p:column headerText="Descricao" sortBy="#{p.descricao}"
-					filterBy="#{p.descricao}" filterMatchMode="contains">
-					<h:outputText value="#{p.descricao}" required="true" />
+				<p:column headerText="Nome" sortBy="#{p.nome}" filterBy="#{p.nome}"
+					filterMatchMode="contains">
+					<h:outputText value="#{p.nome}" />
+				</p:column>
+
+				<p:column headerText="Função" sortBy="#{p.funcao}"
+					filterBy="#{p.funcao}" filterMatchMode="exact">
+					<h:outputText value="#{p.funcao}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Imagem" sortBy="#{p.imagem}"
+					filterBy="#{p.imagem}" filterMatchMode="contains">
+					<h:outputText value="#{p.imagem}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Data Inativos" sortBy="#{p.dataInativo}"
+					filterBy="#{p.dataInativo}" filterMatchMode="contains">
+					<h:outputText value="#{p.dataInativo}"></h:outputText>
 				</p:column>
 
 			</p:dataTable>
@@ -69,25 +84,33 @@
 	</p:panel>
 
 
-	<p:panel id="editar" visible="#{tipoEventoBean.editando}">
+	<p:panel id="editar" visible="#{assinaBean.editando}">
 
 		<h:form>
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Id"></p:outputLabel>
 				<p:inputNumber decimalPlaces="0" disabled="true" placeholder="Auto"
-					value="#{tipoEventoBean.selecionado.id}"></p:inputNumber>
+					value="#{assinaBean.selecionado.id}"></p:inputNumber>
 
-				<p:outputLabel value="Descricao"></p:outputLabel>
-				<p:inputText value="#{tipoEventoBean.selecionado.descricao}"></p:inputText>
+				<p:outputLabel value="Nome"></p:outputLabel>
+				<p:inputText value="#{assinaBean.selecionado.nome}"></p:inputText>
 
+				<p:outputLabel value="Função"></p:outputLabel>
+				<p:inputText value="#{assinaBean.selecionado.funcao}"></p:inputText>
 
+				<p:outputLabel value="Imagem"></p:outputLabel>
+				<p:inputText value="#{assinaBean.selecionado.imagem}"></p:inputText>
+				
+				<p:outputLabel value="Data Inativo"></p:outputLabel>
+                <p:datePicker id="dataInativo" value="#{assinaBean.selecionado.dataInativo}" dataInativo="true"></p:datePicker>
+	
 				<p:commandButton value="Salvar" ajax="true"
 					update="consultar editar" icon="fa fa-save"
-					action="#{tipoEventoBean.salvar}"></p:commandButton>
+					action="#{assinaBean.salvar}"></p:commandButton>
 
 				<p:commandButton value="Cancelar" ajax="true"
 					update="consultar editar" icon="fa fa-undo" immediate="true"
-					action="#{tipoEventoBean.cancelar}"></p:commandButton>
+					action="#{assinaBean.cancelar}"></p:commandButton>
 
 			</p:panelGrid>
 		</h:form>

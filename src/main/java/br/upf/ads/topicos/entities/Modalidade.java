@@ -14,17 +14,17 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
-public class TipoEvento implements Serializable{
+public class Modalidade implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "TipoEventoId")
-	@SequenceGenerator(name = "TipoEventoId", allocationSize = 1, initialValue = 1)	
+	@GeneratedValue(strategy = SEQUENCE, generator = "ModalidadeId")
+	@SequenceGenerator(name = "ModalidadeId", allocationSize = 1, initialValue = 1)	
 	private Integer id;
 	
 	@NotBlank(message = "A Descrição deve ser informado!")
-	@Length(min = 2, max = 60, message = "A Descrição deve ter entre {min} e {max} caracteres.")
+	@Length(min = 4, max = 60, message = "A Descrição deve ter entre {min} e {max} caracteres.")
 	@Column(length = 60, nullable = false)	
 	private String descricao;
 
@@ -44,7 +44,7 @@ public class TipoEvento implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public TipoEvento() {
+	public Modalidade() {
 		super();
 	}
 }

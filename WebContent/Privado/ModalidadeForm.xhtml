@@ -14,22 +14,22 @@
 <h:body>
 
 
-	<p:panel id="consultar" visible="#{!tipoEventoBean.editando}">
+	<p:panel id="consultar" visible="#{!modalidadeBean.editando}">
 		<h:form>
 
 			<p:commandButton value="Incluir" ajax="true"
 				update="consultar editar" icon="fa fa-plus"
-				action="#{tipoEventoBean.incluir}"></p:commandButton>
+				action="#{modalidadeBean.incluir}"></p:commandButton>
 
 			<p:commandButton value="Alterar" ajax="true"
 				update="consultar editar" icon="fa fa-edit"
-				disabled="#{tipoEventoBean.selecionado == null}"
-				action="#{tipoEventoBean.alterar}"></p:commandButton>
+				disabled="#{modalidadeBean.selecionado == null}"
+				action="#{modalidadeBean.alterar}"></p:commandButton>
 
 			<p:commandButton value="Excluir" ajax="true"
 				update="consultar editar" icon="fa fa-remove"
-				disabled="#{tipoEventoBean.selecionado == null}"
-				action="#{tipoEventoBean.excluir}">
+				disabled="#{modalidadeBean.selecionado == null}"
+				action="#{modalidadeBean.excluir}">
 				<p:confirm header="Confirmação" message="Confirma a exclusão?"
 					icon="pi pi-exclamation-triangle" />
 			</p:commandButton>
@@ -42,12 +42,12 @@
 					styleClass="ui-confirmdialog-yes" />
 			</p:confirmDialog>
 
-			<p:dataTable var="p" value="#{tipoEventoBean.lista}" rows="10"
+			<p:dataTable var="p" value="#{modalidadeBean.lista}" rows="10"
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				currentPageReportTemplate="Mostrando de {startRecord} até {endRecord} de {totalRecords}"
 				rowsPerPageTemplate="10,30,60" selectionMode="single"
-				selection="#{tipoEventoBean.selecionado}" rowKey="#{p.id}"
+				selection="#{modalidadeBean.selecionado}" rowKey="#{p.id}"
 				emptyMessage="Nenhum registro encontrado.">
 
 				<p:ajax event="rowSelect" update="consultar editar" />
@@ -69,25 +69,25 @@
 	</p:panel>
 
 
-	<p:panel id="editar" visible="#{tipoEventoBean.editando}">
+	<p:panel id="editar" visible="#{modalidadeBean.editando}">
 
 		<h:form>
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Id"></p:outputLabel>
 				<p:inputNumber decimalPlaces="0" disabled="true" placeholder="Auto"
-					value="#{tipoEventoBean.selecionado.id}"></p:inputNumber>
+					value="#{modalidadeBean.selecionado.id}"></p:inputNumber>
 
 				<p:outputLabel value="Descricao"></p:outputLabel>
-				<p:inputText value="#{tipoEventoBean.selecionado.descricao}"></p:inputText>
+				<p:inputText value="#{modalidadeBean.selecionado.descricao}"></p:inputText>
 
 
 				<p:commandButton value="Salvar" ajax="true"
 					update="consultar editar" icon="fa fa-save"
-					action="#{tipoEventoBean.salvar}"></p:commandButton>
+					action="#{modalidadeBean.salvar}"></p:commandButton>
 
 				<p:commandButton value="Cancelar" ajax="true"
 					update="consultar editar" icon="fa fa-undo" immediate="true"
-					action="#{tipoEventoBean.cancelar}"></p:commandButton>
+					action="#{modalidadeBean.cancelar}"></p:commandButton>
 
 			</p:panelGrid>
 		</h:form>

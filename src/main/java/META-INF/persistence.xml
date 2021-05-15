@@ -6,9 +6,9 @@
 		<class>br.upf.ads.topicos.entities.Usuario</class>
 		<class>br.upf.ads.topicos.entities.TipoEvento</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/aulatopicos"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/aula1"/>
 			<property name="javax.persistence.jdbc.user" value="postgres"/>
-			<property name="javax.persistence.jdbc.password" value="635294"/>
+			<property name="javax.persistence.jdbc.password" value="3258"/>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
 		</properties>

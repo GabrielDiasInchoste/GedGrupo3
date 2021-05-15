@@ -14,22 +14,22 @@
 <h:body>
 
 
-	<p:panel id="consultar" visible="#{!tipoEventoBean.editando}">
+	<p:panel id="consultar" visible="#{!templateBean.editando}">
 		<h:form>
 
 			<p:commandButton value="Incluir" ajax="true"
 				update="consultar editar" icon="fa fa-plus"
-				action="#{tipoEventoBean.incluir}"></p:commandButton>
+				action="#{templateBean.incluir}"></p:commandButton>
 
 			<p:commandButton value="Alterar" ajax="true"
 				update="consultar editar" icon="fa fa-edit"
-				disabled="#{tipoEventoBean.selecionado == null}"
-				action="#{tipoEventoBean.alterar}"></p:commandButton>
+				disabled="#{templateBean.selecionado == null}"
+				action="#{templateBean.alterar}"></p:commandButton>
 
 			<p:commandButton value="Excluir" ajax="true"
 				update="consultar editar" icon="fa fa-remove"
-				disabled="#{tipoEventoBean.selecionado == null}"
-				action="#{tipoEventoBean.excluir}">
+				disabled="#{templateBean.selecionado == null}"
+				action="#{templateBean.excluir}">
 				<p:confirm header="Confirmação" message="Confirma a exclusão?"
 					icon="pi pi-exclamation-triangle" />
 			</p:commandButton>
@@ -42,12 +42,12 @@
 					styleClass="ui-confirmdialog-yes" />
 			</p:confirmDialog>
 
-			<p:dataTable var="p" value="#{tipoEventoBean.lista}" rows="10"
+			<p:dataTable var="p" value="#{templateBean.lista}" rows="10"
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				currentPageReportTemplate="Mostrando de {startRecord} até {endRecord} de {totalRecords}"
 				rowsPerPageTemplate="10,30,60" selectionMode="single"
-				selection="#{tipoEventoBean.selecionado}" rowKey="#{p.id}"
+				selection="#{templateBean.selecionado}" rowKey="#{p.id}"
 				emptyMessage="Nenhum registro encontrado.">
 
 				<p:ajax event="rowSelect" update="consultar editar" />
@@ -62,6 +62,11 @@
 					filterBy="#{p.descricao}" filterMatchMode="contains">
 					<h:outputText value="#{p.descricao}" required="true" />
 				</p:column>
+				
+				<p:column headerText="Texto" sortBy="#{p.texto}"
+					filterBy="#{p.texto}" filterMatchMode="contains">
+					<h:outputText value="#{p.texto}" required="true" />
+				</p:column>
 
 			</p:dataTable>
 		</h:form>
@@ -69,25 +74,28 @@
 	</p:panel>
 
 
-	<p:panel id="editar" visible="#{tipoEventoBean.editando}">
+	<p:panel id="editar" visible="#{templateBean.editando}">
 
 		<h:form>
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Id"></p:outputLabel>
 				<p:inputNumber decimalPlaces="0" disabled="true" placeholder="Auto"
-					value="#{tipoEventoBean.selecionado.id}"></p:inputNumber>
+					value="#{templateBean.selecionado.id}"></p:inputNumber>
 
 				<p:outputLabel value="Descricao"></p:outputLabel>
-				<p:inputText value="#{tipoEventoBean.selecionado.descricao}"></p:inputText>
+				<p:inputText value="#{templateBean.selecionado.descricao}"></p:inputText>
+				
+				<p:outputLabel value="Texto"></p:outputLabel>
+				<p:inputText value="#{templateBean.selecionado.texto}"></p:inputText>
 
 
 				<p:commandButton value="Salvar" ajax="true"
 					update="consultar editar" icon="fa fa-save"
-					action="#{tipoEventoBean.salvar}"></p:commandButton>
+					action="#{templateBean.salvar}"></p:commandButton>
 
 				<p:commandButton value="Cancelar" ajax="true"
 					update="consultar editar" icon="fa fa-undo" immediate="true"
-					action="#{tipoEventoBean.cancelar}"></p:commandButton>
+					action="#{templateBean.cancelar}"></p:commandButton>
 
 			</p:panelGrid>
 		</h:form>
