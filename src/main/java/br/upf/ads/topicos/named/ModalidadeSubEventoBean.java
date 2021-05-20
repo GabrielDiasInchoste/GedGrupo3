@@ -6,30 +6,30 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import br.upf.ads.topicos.entities.Produto;
+import br.upf.ads.topicos.entities.ModalidadeSubEvento;
 import br.upf.ads.topicos.jpa.GenericDao;
 import br.upf.ads.topicos.jsf.JsfUtil;
 import br.upf.ads.topicos.jsf.TrataException;
 
 @Named
 @ViewScoped
-public class ProdutoBean implements Serializable{
+public class ModalidadeSubEventoBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
-	private Produto selecionado; // atributo para vinculo com campos do formulário
-	private List<Produto> lista; // atributo para vinculo com o datatable da consulta
-	private Boolean editando; // atributo para controlar o painel visível editar ou consultar
-	private GenericDao<Produto> dao = new GenericDao<Produto>();
 	
-	public ProdutoBean() {
+	private ModalidadeSubEvento selecionado; // atributo para vinculo com campos do formulário
+	private List<ModalidadeSubEvento> lista; // atributo para vinculo com o datatable da consulta
+	private Boolean editando; // atributo para controlar o painel visível editar ou consultar
+	private GenericDao<ModalidadeSubEvento> dao = new GenericDao<ModalidadeSubEvento>();
+	
+	public ModalidadeSubEventoBean() {
 		super();
 		setEditando(false);
 		carregarLista();
 	}
 	
 	public void incluir() {
-		selecionado = new Produto(); // cria novo produto
+		selecionado = new ModalidadeSubEvento(); // cria novo produto
 		setEditando(true);
 	}
 
@@ -71,29 +71,29 @@ public class ProdutoBean implements Serializable{
 	
 	public void carregarLista() {
 		try {
-			lista = dao.createQuery("from Produto order by id");
+			lista = dao.createQuery("from ModalidadeSubEvento order by id");
 		} catch (Exception e) {
 			e.printStackTrace();
 			JsfUtil.addErrorMessage(TrataException.getMensagem(e)); 
 		}			
 	}	
 
-	public List<Produto> getLista() {
+	public List<ModalidadeSubEvento> getLista() {
 		return lista;
 	}
 
 
-	public void setLista(List<Produto> lista) {
+	public void setLista(List<ModalidadeSubEvento> lista) {
 		this.lista = lista;
 	}
 
 
-	public Produto getSelecionado() {
+	public ModalidadeSubEvento getSelecionado() {
 		return selecionado;
 	}
 
 
-	public void setSelecionado(Produto selecionado) {
+	public void setSelecionado(ModalidadeSubEvento selecionado) {
 		this.selecionado = selecionado;
 	}
 
@@ -105,9 +105,4 @@ public class ProdutoBean implements Serializable{
 		this.editando = editando;
 	}
 
-	
-	
-	
-	
-	
 }

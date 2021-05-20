@@ -15,6 +15,8 @@ import br.upf.ads.topicos.jsf.TrataException;
 @ViewScoped
 public class TipoEventoBean implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	private TipoEvento selecionado; 
 	private List<TipoEvento> lista;
 	private Boolean editando;

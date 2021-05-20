@@ -13,6 +13,8 @@ import org.primefaces.PrimeFaces;
 @ViewScoped
 public class HomeBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
 	public HomeBean() {
 		super();
 	}

@@ -7,7 +7,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.upf.ads.topicos.entities.Template;
-import br.upf.ads.topicos.entities.TipoEvento;
 import br.upf.ads.topicos.jpa.GenericDao;
 import br.upf.ads.topicos.jsf.JsfUtil;
 import br.upf.ads.topicos.jsf.TrataException;
@@ -16,6 +15,8 @@ import br.upf.ads.topicos.jsf.TrataException;
 @ViewScoped
 public class TemplateBean implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	private Template selecionado; 
 	private List<Template> lista;
 	private Boolean editando;

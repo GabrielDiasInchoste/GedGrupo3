@@ -9,13 +9,7 @@ import javax.persistence.Persistence;
 
 import org.hibernate.Session;
 import org.hibernate.engine.spi.SessionImplementor;
-import org.hibernate.jpa.HibernateEntityManager;
 
-/**
- * 
- * @author Jaqson
- *
- */
 public class JpaUtil {
 
 	private EntityManagerFactory factory;

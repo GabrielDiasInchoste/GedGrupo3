@@ -17,10 +17,6 @@ public class GenericDao<T> {
 		
 	}
 	
-	public static void main(String[] args) {
-		JpaUtil.getInstance().getEntityManager();
-	}
-	
 	public T find(Object id, Class classe) throws Exception {
 		EntityManager em = null;
 		try {

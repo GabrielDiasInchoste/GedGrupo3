@@ -14,6 +14,8 @@ import br.upf.ads.topicos.jsf.TrataException;
 @Named
 @ViewScoped
 public class AssinaBean implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	private Assina selecionado; // atributo para vinculo com campos do formulário
 	private List<Assina> lista; // atributo para vinculo com o datatable da consulta

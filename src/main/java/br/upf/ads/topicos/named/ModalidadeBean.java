@@ -15,6 +15,8 @@ import br.upf.ads.topicos.jsf.TrataException;
 @ViewScoped
 public class ModalidadeBean implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private Modalidade selecionado; 
 	private List<Modalidade> lista;
 	private Boolean editando;

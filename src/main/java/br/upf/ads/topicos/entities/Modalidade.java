@@ -16,6 +16,8 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 public class Modalidade implements Serializable{
 
+
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -27,7 +29,18 @@ public class Modalidade implements Serializable{
 	@Length(min = 4, max = 60, message = "A Descrição deve ter entre {min} e {max} caracteres.")
 	@Column(length = 60, nullable = false)	
 	private String descricao;
-
+	
+	public Modalidade() {
+		super();
+	}
+	
+	public Modalidade(Integer id,
+			@NotBlank(message = "A Descrição deve ser informado!") @Length(min = 4, max = 60, message = "A Descrição deve ter entre {min} e {max} caracteres.") String descricao) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -44,7 +57,4 @@ public class Modalidade implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public Modalidade() {
-		super();
-	}
 }

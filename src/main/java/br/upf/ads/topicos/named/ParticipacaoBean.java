@@ -6,30 +6,30 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import br.upf.ads.topicos.entities.Produto;
+import br.upf.ads.topicos.entities.Participacao;
 import br.upf.ads.topicos.jpa.GenericDao;
 import br.upf.ads.topicos.jsf.JsfUtil;
 import br.upf.ads.topicos.jsf.TrataException;
 
 @Named
 @ViewScoped
-public class ProdutoBean implements Serializable{
+public class ParticipacaoBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
-	private Produto selecionado; // atributo para vinculo com campos do formulário
-	private List<Produto> lista; // atributo para vinculo com o datatable da consulta
-	private Boolean editando; // atributo para controlar o painel visível editar ou consultar
-	private GenericDao<Produto> dao = new GenericDao<Produto>();
 	
-	public ProdutoBean() {
+	private Participacao selecionado; // atributo para vinculo com campos do formulário
+	private List<Participacao> lista; // atributo para vinculo com o datatable da consulta
+	private Boolean editando; // atributo para controlar o painel visível editar ou consultar
+	private GenericDao<Participacao> dao = new GenericDao<Participacao>();
+	
+	public ParticipacaoBean() {
 		super();
 		setEditando(false);
 		carregarLista();
 	}
 	
 	public void incluir() {
-		selecionado = new Produto(); // cria novo produto
+		selecionado = new Participacao(); // cria novo produto
 		setEditando(true);
 	}
 
@@ -71,29 +71,29 @@ public class ProdutoBean implements Serializable{
 	
 	public void carregarLista() {
 		try {
-			lista = dao.createQuery("from Produto order by id");
+			lista = dao.createQuery("from Participacao order by id");
 		} catch (Exception e) {
 			e.printStackTrace();
 			JsfUtil.addErrorMessage(TrataException.getMensagem(e)); 
 		}			
 	}	
 
-	public List<Produto> getLista() {
+	public List<Participacao> getLista() {
 		return lista;
 	}
 
 
-	public void setLista(List<Produto> lista) {
+	public void setLista(List<Participacao> lista) {
 		this.lista = lista;
 	}
 
 
-	public Produto getSelecionado() {
+	public Participacao getSelecionado() {
 		return selecionado;
 	}
 
 
-	public void setSelecionado(Produto selecionado) {
+	public void setSelecionado(Participacao selecionado) {
 		this.selecionado = selecionado;
 	}
 
@@ -105,9 +105,4 @@ public class ProdutoBean implements Serializable{
 		this.editando = editando;
 	}
 
-	
-	
-	
-	
-	
 }

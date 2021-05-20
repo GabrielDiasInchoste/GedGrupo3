@@ -1,19 +1,12 @@
 package br.upf.ads.topicos.jsf;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
 
 import org.primefaces.PrimeFaces;
 
-/**
- * 
- * @author Jaqson
- *
- */
 public class JsfUtil {
 	
     public static void addMessage(String message) {

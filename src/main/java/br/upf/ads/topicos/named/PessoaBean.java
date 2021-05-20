@@ -15,6 +15,8 @@ import br.upf.ads.topicos.jsf.TrataException;
 @ViewScoped
 public class PessoaBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
 	private Pessoa selecionado; // atributo para vinculo com campos do formulário
 	private List<Pessoa> lista; // atributo para vinculo com o datatable da consulta
 	private Boolean editando; // atributo para controlar o painel visível editar ou consultar

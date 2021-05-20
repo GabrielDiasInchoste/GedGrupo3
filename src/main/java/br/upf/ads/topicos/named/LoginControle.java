@@ -14,7 +14,9 @@ import br.upf.ads.topicos.jpa.GenericDao;
 
 @Named
 @SessionScoped
-public class LoginControle implements Serializable {	
+public class LoginControle implements Serializable {
+		
+	private static final long serialVersionUID = 1L;
 	
 	private String email;
 	private String senha;
