@@ -8,7 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
@@ -32,19 +32,25 @@ public class Participacao implements Serializable {
 	@Column(length = 60, nullable = false)
 	private String arquivo;
 
-	@OneToOne
+	@ManyToOne
+	private Pessoa pessoa;
+
+	@ManyToOne
 	private ModalidadeSubEvento modalidadeSubEvento;
-	
+
 	public Participacao() {
 		super();
 	}
 
 	public Participacao(Integer id, @NotBlank(message = "O Texto deve ser informada!") Float horasParticipou,
-			@NotBlank(message = "A Arquivo deve ser informado!") @Length(min = 5, max = 60, message = "A Arquivo deve ter entre {min} e {max} caracteres.") String arquivo) {
+			@NotBlank(message = "A Arquivo deve ser informado!") @Length(min = 5, max = 60, message = "A Arquivo deve ter entre {min} e {max} caracteres.") String arquivo,
+			Pessoa pessoa, ModalidadeSubEvento modalidadeSubEvento) {
 		super();
 		this.id = id;
 		this.horasParticipou = horasParticipou;
 		this.arquivo = arquivo;
+		this.pessoa = pessoa;
+		this.modalidadeSubEvento = modalidadeSubEvento;
 	}
 
 	public Integer getId() {
@@ -71,4 +77,19 @@ public class Participacao implements Serializable {
 		this.arquivo = arquivo;
 	}
 
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public ModalidadeSubEvento getModalidadeSubEvento() {
+		return modalidadeSubEvento;
+	}
+
+	public void setModalidadeSubEvento(ModalidadeSubEvento modalidadeSubEvento) {
+		this.modalidadeSubEvento = modalidadeSubEvento;
+	}
 }

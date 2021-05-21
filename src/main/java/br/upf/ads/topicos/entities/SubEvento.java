@@ -7,8 +7,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -22,12 +22,12 @@ public class SubEvento implements Serializable {
 	private Integer id;
 
 //	@OneToMany
-	private ModalidadeSubEvento modalidadeSubEvento;
+//	private ModalidadeSubEvento modalidadeSubEvento;
 
 //	@ManyToMany
 	private Assina assina;
 
-	@OneToOne
+	@ManyToOne
 	private TipoEvento tipoEvento;
 
 	@ManyToOne
@@ -37,11 +37,10 @@ public class SubEvento implements Serializable {
 		super();
 	}
 
-	public SubEvento(Integer id, ModalidadeSubEvento modalidadeSubEvento, Assina assina, TipoEvento tipoEvento,
+	public SubEvento(Integer id, Assina assina, TipoEvento tipoEvento,
 			Evento evento) {
 		super();
 		this.id = id;
-		this.modalidadeSubEvento = modalidadeSubEvento;
 		this.assina = assina;
 		this.tipoEvento = tipoEvento;
 		this.evento = evento;
@@ -53,14 +52,6 @@ public class SubEvento implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public ModalidadeSubEvento getModalidadeSubEvento() {
-		return modalidadeSubEvento;
-	}
-
-	public void setModalidadeSubEvento(ModalidadeSubEvento modalidadeSubEvento) {
-		this.modalidadeSubEvento = modalidadeSubEvento;
 	}
 
 	public Assina getAssina() {

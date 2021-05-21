@@ -2,15 +2,16 @@ package br.upf.ads.topicos.named;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.upf.ads.topicos.entities.Usuario;
-import br.upf.ads.topicos.jpa.GenericDao;
+import br.upf.ads.topicos.jpa.JpaUtil;
 
 @Named
 @SessionScoped
@@ -21,20 +22,24 @@ public class LoginControle implements Serializable {
 	private String email;
 	private String senha;
 	private Usuario usuarioLogado;
-	private GenericDao<Usuario> dao = new GenericDao<Usuario>();
 
-	
-	public String entrar() throws Exception {
+	public String entrar() { 
 		usuarioLogado = null;
-		List<Usuario> usuarios = dao.createQuery("from Usuario");
-		Optional<Usuario> usuario = usuarios.stream().filter(usu -> usu.getEmail().equals(email) && usu.getSenha().equals(senha)).findAny();
-		if (usuario.isPresent()) {
-			usuarioLogado = usuario.get();
+		EntityManager em = JpaUtil.getInstance().getEntityManager();
+		String oql = "from Usuario where email = :email and senha = :senha";
+		Query qry = em.createQuery(oql);
+		qry.setParameter("email", this.email);
+		qry.setParameter("senha", this.senha);
+		List<Usuario> ret = qry.getResultList();
+		em.close();
+		if (ret.size() > 0) {
+			usuarioLogado = ret.get(0);
 			return "/faces/Privado/Home.xhtml?faces-redirect=true";
+			
 		} else {
-			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválida!", "");
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
-			return ""; 
+			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválida!" , "");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem); 			
+			return ""; // Permanece na tela de login
 		}
 	}
 

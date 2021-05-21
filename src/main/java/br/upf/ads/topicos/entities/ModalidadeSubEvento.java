@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -21,10 +20,10 @@ public class ModalidadeSubEvento implements Serializable {
 	@SequenceGenerator(name = "ModalidadeSubEventoId", allocationSize = 1, initialValue = 1)
 	private Integer id;
 
-	@OneToOne
+	@ManyToOne
 	private Modalidade modalidate;
 
-	@OneToOne
+	@ManyToOne
 	private Template template;
 
 	@ManyToOne

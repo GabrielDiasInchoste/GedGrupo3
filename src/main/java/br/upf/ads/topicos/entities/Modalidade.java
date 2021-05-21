@@ -16,8 +16,6 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 public class Modalidade implements Serializable{
 
-
-
 	private static final long serialVersionUID = 1L;
 	
 	@Id
