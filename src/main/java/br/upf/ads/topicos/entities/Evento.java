@@ -4,11 +4,13 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
@@ -46,8 +48,8 @@ public class Evento implements Serializable {
 	@Column(length = 60, nullable = false)
 	private Float totalHoras;
 
-//	@OneToMany
-	private SubEvento subEvento;
+	@OneToMany
+	private List<SubEvento> subEvento;
 
 	public Evento() {
 		super();
@@ -58,7 +60,7 @@ public class Evento implements Serializable {
 			@NotBlank(message = "A Descrição deve ser informado!") @Length(min = 4, max = 60, message = "A Descrição deve ter entre {min} e {max} caracteres.") String descricao,
 			@NotBlank(message = "A Data Inicio deve ser informado!") Date dataInicio,
 			@NotBlank(message = "A Data Termino deve ser informado!") Date dataTermino,
-			@NotBlank(message = "A Total Horas deve ser informado!") Float totalHoras, SubEvento subEvento) {
+			@NotBlank(message = "A Total Horas deve ser informado!") Float totalHoras, List<SubEvento> subEvento) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -117,11 +119,11 @@ public class Evento implements Serializable {
 		this.totalHoras = totalHoras;
 	}
 
-	public SubEvento getSubEvento() {
+	public List<SubEvento> getSubEvento() {
 		return subEvento;
 	}
 
-	public void setSubEvento(SubEvento subEvento) {
+	public void setSubEvento(List<SubEvento> subEvento) {
 		this.subEvento = subEvento;
 	}
 

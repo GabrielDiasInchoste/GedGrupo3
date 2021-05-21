@@ -3,12 +3,14 @@ package br.upf.ads.topicos.entities;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -21,11 +23,11 @@ public class SubEvento implements Serializable {
 	@SequenceGenerator(name = "SubEventoId", allocationSize = 1, initialValue = 1)
 	private Integer id;
 
-//	@OneToMany
-//	private ModalidadeSubEvento modalidadeSubEvento;
+	@OneToMany
+	private List<ModalidadeSubEvento> modalidadeSubEvento;
 
-//	@ManyToMany
-	private Assina assina;
+	@ManyToMany
+	private List<Assina> assina;
 
 	@ManyToOne
 	private TipoEvento tipoEvento;
@@ -37,7 +39,7 @@ public class SubEvento implements Serializable {
 		super();
 	}
 
-	public SubEvento(Integer id, Assina assina, TipoEvento tipoEvento,
+	public SubEvento(Integer id, List<Assina> assina, TipoEvento tipoEvento,
 			Evento evento) {
 		super();
 		this.id = id;
@@ -54,11 +56,11 @@ public class SubEvento implements Serializable {
 		this.id = id;
 	}
 
-	public Assina getAssina() {
+	public List<Assina> getAssina() {
 		return assina;
 	}
 
-	public void setAssina(Assina assina) {
+	public void setAssina(List<Assina> assina) {
 		this.assina = assina;
 	}
 
