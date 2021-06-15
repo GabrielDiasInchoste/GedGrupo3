@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
@@ -31,7 +32,10 @@ public class Participacao implements Serializable {
 	@Length(min = 5, max = 60, message = "A Arquivo deve ter entre {min} e {max} caracteres.")
 	@Column(length = 60, nullable = false)
 	private String arquivo;
-
+	
+	@Lob
+	private byte[] arquivoBytes;
+	
 	@ManyToOne
 	private Pessoa pessoa;
 
@@ -42,54 +46,97 @@ public class Participacao implements Serializable {
 		super();
 	}
 
+	
+
 	public Participacao(Integer id, @NotBlank(message = "O Texto deve ser informada!") Float horasParticipou,
-			@NotBlank(message = "A Arquivo deve ser informado!") @Length(min = 5, max = 60, message = "A Arquivo deve ter entre {min} e {max} caracteres.") String arquivo,
-			Pessoa pessoa, ModalidadeSubEvento modalidadeSubEvento) {
+			@NotBlank(message = "A Arquivo deve ser informado!") @Length(min = 5, max = 60, message = "A Arquivo deve ter entre {min} e {max} caracteres.") byte[] arquivoBytes,
+			String arquivo, Pessoa pessoa, ModalidadeSubEvento modalidadeSubEvento) {
 		super();
 		this.id = id;
 		this.horasParticipou = horasParticipou;
+		this.arquivoBytes = arquivoBytes;
 		this.arquivo = arquivo;
 		this.pessoa = pessoa;
 		this.modalidadeSubEvento = modalidadeSubEvento;
 	}
+
+
 
 	public Integer getId() {
 		return id;
 	}
 
+
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+
 
 	public Float getHorasParticipou() {
 		return horasParticipou;
 	}
 
+
+
 	public void setHorasParticipou(Float horasParticipou) {
 		this.horasParticipou = horasParticipou;
 	}
+
+
+
+	public byte[] getArquivoBytes() {
+		return arquivoBytes;
+	}
+
+
+
+	public void setArquivoBytes(byte[] arquivoBytes) {
+		this.arquivoBytes = arquivoBytes;
+	}
+
+
 
 	public String getArquivo() {
 		return arquivo;
 	}
 
+
+
 	public void setArquivo(String arquivo) {
 		this.arquivo = arquivo;
 	}
+
+
 
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
+
+
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+
+
 
 	public ModalidadeSubEvento getModalidadeSubEvento() {
 		return modalidadeSubEvento;
 	}
 
+
+
 	public void setModalidadeSubEvento(ModalidadeSubEvento modalidadeSubEvento) {
 		this.modalidadeSubEvento = modalidadeSubEvento;
 	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 }
