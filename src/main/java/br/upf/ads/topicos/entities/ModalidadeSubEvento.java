@@ -1,6 +1,8 @@
 package br.upf.ads.topicos.entities;
 
 import static javax.persistence.GenerationType.SEQUENCE;
+import br.upf.ads.topicos.entities.Modalidade;
+import br.upf.ads.topicos.entities.Template;
 
 import java.io.Serializable;
 
@@ -20,14 +22,14 @@ public class ModalidadeSubEvento implements Serializable {
 	@SequenceGenerator(name = "ModalidadeSubEventoId", allocationSize = 1, initialValue = 1)
 	private Integer id;
 
-	@ManyToOne
+	@ManyToOne								
 	private Modalidade modalidate;
 
 	@ManyToOne
 	private Template template;
 
 	@ManyToOne
-	private SubEvento subEvento;
+	private SubEvento subEvento;	
 
 	public ModalidadeSubEvento() {
 		super();
