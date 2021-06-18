@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
@@ -39,8 +38,6 @@ public class Assina implements Serializable {
 	@Column(length = 50)
 	private Date dataInativo;
 
-//	@ManyToMany
-	private SubEvento subEvento;
 
 	public Assina() {
 		super();
@@ -48,22 +45,13 @@ public class Assina implements Serializable {
 
 	public Assina(Integer id,
 			@NotBlank(message = "O nome deve ser informado!") @Length(min = 2, max = 60, message = "O nome deve ter entre {min} e {max} caracteres.") String nome,
-			String funcao, String imagem, Date dataInativo, SubEvento subEvento) {
+			String funcao, String imagem, Date dataInativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.funcao = funcao;
 		this.imagem = imagem;
 		this.dataInativo = dataInativo;
-		this.subEvento = subEvento;
-	}
-
-	public SubEvento getSubEvento() {
-		return subEvento;
-	}
-
-	public void setSubEvento(SubEvento subEvento) {
-		this.subEvento = subEvento;
 	}
 
 	public Integer getId() {
