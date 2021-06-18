@@ -14,22 +14,22 @@
 <h:body>
 
 
-	<p:panel id="consultar" visible="#{!eventoBean.editando}">
+	<p:panel id="consultar" visible="#{!subEventoBean.editando}">
 		<h:form>
 
 			<p:commandButton value="Incluir" ajax="true"
 				update="consultar editar" icon="fa fa-plus"
-				action="#{eventoBean.incluir}"></p:commandButton>
+				action="#{subEventoBean.incluir}"></p:commandButton>
 
 			<p:commandButton value="Alterar" ajax="true"
 				update="consultar editar" icon="fa fa-edit"
-				disabled="#{eventoBean.selecionado == null}"
-				action="#{eventoBean.alterar}"></p:commandButton>
+				disabled="#{subEventoBean.selecionado == null}"
+				action="#{subEventoBean.alterar}"></p:commandButton>
 
 			<p:commandButton value="Excluir" ajax="true"
 				update="consultar editar" icon="fa fa-remove"
-				disabled="#{eventoBean.selecionado == null}"
-				action="#{eventoBean.excluir}">
+				disabled="#{subEventoBean.selecionado == null}"
+				action="#{subEventoBean.excluir}">
 				<p:confirm header="Confirmação" message="Confirma a exclusão?"
 					icon="pi pi-exclamation-triangle" />
 			</p:commandButton>
@@ -42,12 +42,12 @@
 					styleClass="ui-confirmdialog-yes" />
 			</p:confirmDialog>
 
-			<p:dataTable var="p" value="#{eventoBean.lista}" rows="10"
+			<p:dataTable var="p" value="#{subEventoBean.lista}" rows="10"
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				currentPageReportTemplate="Mostrando de {startRecord} até {endRecord} de {totalRecords}"
 				rowsPerPageTemplate="10,30,60" selectionMode="single"
-				selection="#{eventoBean.selecionado}" rowKey="#{p.id}"
+				selection="#{subEventoBean.selecionado}" rowKey="#{p.id}"
 				emptyMessage="Nenhum registro encontrado.">
 
 				<p:ajax event="rowSelect" update="consultar editar" />
@@ -92,38 +92,38 @@
 	</p:panel>
 
 
-	<p:panel id="editar" visible="#{eventoBean.editando}">
+	<p:panel id="editar" visible="#{subEventoBean.editando}">
 
 		<h:form>
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Id"></p:outputLabel>
 				<p:inputNumber decimalPlaces="0" disabled="true" placeholder="Auto"
-					value="#{eventoBean.selecionado.id}"></p:inputNumber>
+					value="#{subEventoBean.selecionado.id}"></p:inputNumber>
 
 				<p:outputLabel value="Nome"></p:outputLabel>
-				<p:inputText value="#{eventoBean.selecionado.titulo}"></p:inputText>
+				<p:inputText value="#{subEventoBean.selecionado.titulo}"></p:inputText>
 
 				<p:outputLabel value="Descrição"></p:outputLabel>
-				<p:inputText value="#{eventoBean.selecionado.descricao}"></p:inputText>
+				<p:inputText value="#{subEventoBean.selecionado.descricao}"></p:inputText>
 
 				<p:outputLabel value="Data de Início"></p:outputLabel>
-                <p:datePicker id="dataInicio" value="#{eventoBean.selecionado.dataInicio}" dataInicio="true"></p:datePicker>
+                <p:datePicker id="dataInicio" value="#{subEventoBean.selecionado.dataInicio}" dataInicio="true"></p:datePicker>
 				
 				<p:outputLabel value="Data de Término"></p:outputLabel>
-                <p:datePicker id="dataTermino" value="#{eventoBean.selecionado.dataTermino}" dataTermino="true"></p:datePicker>
+                <p:datePicker id="dataTermino" value="#{subEventoBean.selecionado.dataTermino}" dataTermino="true"></p:datePicker>
                 
                <p:outputLabel value="Total de Horas"></p:outputLabel>
 				<p:inputNumber
-					value="#{eventoBean.selecionado.totalHoras}"></p:inputNumber>
+					value="#{subEventoBean.selecionado.totalHoras}"></p:inputNumber>
                 
  
 				<p:commandButton value="Salvar" ajax="true"
 					update="consultar editar" icon="fa fa-save"
-					action="#{eventoBean.salvar}"></p:commandButton>
+					action="#{subEventoBean.salvar}"></p:commandButton>
 
 				<p:commandButton value="Cancelar" ajax="true"
 					update="consultar editar" icon="fa fa-undo" immediate="true"
-					action="#{eventoBean.cancelar}"></p:commandButton>
+					action="#{subEventoBean.cancelar}"></p:commandButton>
 
 			</p:panelGrid>
 		</h:form>
