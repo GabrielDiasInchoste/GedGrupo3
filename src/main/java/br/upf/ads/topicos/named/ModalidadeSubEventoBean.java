@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
 import br.upf.ads.topicos.entities.ModalidadeSubEvento;
+import br.upf.ads.topicos.entities.Participacao;
+import br.upf.ads.topicos.entities.Pessoa;
 import br.upf.ads.topicos.jpa.GenericDao;
+import br.upf.ads.topicos.jpa.JpaUtil;
 import br.upf.ads.topicos.jsf.JsfUtil;
 import br.upf.ads.topicos.jsf.TrataException;
 
@@ -66,8 +70,6 @@ public class ModalidadeSubEventoBean implements Serializable{
 			JsfUtil.addErrorMessage(TrataException.getMensagem(e));
 		}
 	}
-	
-	
 	
 	public void carregarLista() {
 		try {

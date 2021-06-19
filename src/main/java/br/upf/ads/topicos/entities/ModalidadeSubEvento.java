@@ -1,6 +1,5 @@
 package br.upf.ads.topicos.entities;
 
-import static javax.persistence.GenerationType.SEQUENCE;
 import br.upf.ads.topicos.entities.Modalidade;
 import br.upf.ads.topicos.entities.Template;
 
@@ -18,8 +17,6 @@ public class ModalidadeSubEvento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "ModalidadeSubEventoId")
-	@SequenceGenerator(name = "ModalidadeSubEventoId", allocationSize = 1, initialValue = 1)
 	private Integer id;
 
 	@ManyToOne								

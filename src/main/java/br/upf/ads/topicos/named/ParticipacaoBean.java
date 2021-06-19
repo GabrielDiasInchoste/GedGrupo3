@@ -13,14 +13,18 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 
+import br.upf.ads.topicos.entities.ModalidadeSubEvento;
 import br.upf.ads.topicos.entities.Participacao;
+import br.upf.ads.topicos.entities.Pessoa;
 import br.upf.ads.topicos.jpa.GenericDao;
+import br.upf.ads.topicos.jpa.JpaUtil;
 import br.upf.ads.topicos.jsf.JsfUtil;
 import br.upf.ads.topicos.jsf.TrataException;
 
@@ -35,40 +39,27 @@ public class ParticipacaoBean implements Serializable {
 	private Boolean editando; // atributo para controlar o painel visível editar ou consultar
 	private GenericDao<Participacao> dao = new GenericDao<Participacao>();
 	private UploadedFile file;
+	
 
-	public void handleFileUpload(FileUploadEvent event) {
-		selecionado.setArquivoBytes(event.getFile().getContent());
-	}
-
-	public StreamedContent getImagem() throws IOException {
-		if (selecionado != null && selecionado.getArquivoBytes() != null) {
-			InputStream io = new ByteArrayInputStream(selecionado.getArquivoBytes());
-			return DefaultStreamedContent.builder().contentType("image/jpeg").stream(() -> io).build();
-		} else {
-			return null;
-		}
-	}
-
-	public StreamedContent getLocalizarTextoImg() {
-		try {
-			return DefaultStreamedContent.builder().contentType("image/png").stream(() -> {
-				try {
-					BufferedImage bufferedImg = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
-					Graphics2D g2 = bufferedImg.createGraphics();
-					g2.drawString("Localizar ao lado", 50, 100);
-					ByteArrayOutputStream os = new ByteArrayOutputStream();
-					ImageIO.write(bufferedImg, "png", os);
-					return new ByteArrayInputStream(os.toByteArray());
-				} catch (Exception e) {
-					e.printStackTrace();
-					return null;
-				}
-			}).build();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+	
+	public List<Pessoa> completePessoa(String query) {
+		EntityManager em = JpaUtil.getInstance().getEntityManager();
+		 List<Pessoa> results = em.createQuery(
+		 "from Pessoa where upper(nome) like "+
+		"'"+query.trim().toUpperCase()+"%' "+
+		 "order by nome").getResultList();
+		 em.close();
+		 return results;
+		 }
+	
+	public List<ModalidadeSubEvento> completeModalidadeSubEvento(Integer query) {
+		EntityManager em = JpaUtil.getInstance().getEntityManager();
+		 List<ModalidadeSubEvento> results = em.createQuery(
+			"from ModalidadeSubEvento order by id").getResultList();
+			 em.close();
+		 return results;
+		 }
+	
 
 	public ParticipacaoBean() {
 		super();

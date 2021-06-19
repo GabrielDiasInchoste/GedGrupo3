@@ -33,9 +33,6 @@ public class Participacao implements Serializable {
 	@Column(length = 60, nullable = false)
 	private String arquivo;
 	
-	@Lob
-	private byte[] arquivoBytes;
-	
 	@ManyToOne
 	private Pessoa pessoa;
 
@@ -54,7 +51,6 @@ public class Participacao implements Serializable {
 		super();
 		this.id = id;
 		this.horasParticipou = horasParticipou;
-		this.arquivoBytes = arquivoBytes;
 		this.arquivo = arquivo;
 		this.pessoa = pessoa;
 		this.modalidadeSubEvento = modalidadeSubEvento;
@@ -83,19 +79,6 @@ public class Participacao implements Serializable {
 	public void setHorasParticipou(Float horasParticipou) {
 		this.horasParticipou = horasParticipou;
 	}
-
-
-
-	public byte[] getArquivoBytes() {
-		return arquivoBytes;
-	}
-
-
-
-	public void setArquivoBytes(byte[] arquivoBytes) {
-		this.arquivoBytes = arquivoBytes;
-	}
-
 
 
 	public String getArquivo() {

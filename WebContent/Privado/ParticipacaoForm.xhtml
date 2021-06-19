@@ -13,7 +13,6 @@
 
 <h:body>
 
-
 	<p:panel id="consultar" visible="#{!participacaoBean.editando}">
 		<h:form>
 
@@ -80,33 +79,30 @@
 
 	<p:panel id="editar" visible="#{participacaoBean.editando}">
 
-
-
-
-
-
-
-
 		<h:form>
 			<p:panelGrid columns="2">
 
-				
-<p:outputLabel value="Partocipacao" for="inputParticipacao" />
-<p:autoComplete id="inputParticipacao" style="width:600px"
- dropdown="true" multiple="false" forceSelection="true"
- var="obj" itemLabel="#{obj.horasParticipou}}" itemValue="#{horasParticipou}}"
- value="#{participacaoBean.selecionado.arquivo}"
- converter="participacaoConverter"
- completeMethod="#{participacaoBean.completePessoa}" />
+				<p:outputLabel value="Pessoa" for="inputPessoa" />
+				<p:autoComplete id="inputPessoa" style="width:600px" dropdown="true"
+					multiple="false" forceSelection="true" var="pessoa"
+					itemLabel="#{pessoa.nome}" itemValue="#{pessoa}"
+					value="#{participacaoBean.selecionado.pessoa}"
+					converter="pessoaConverter"
+					completeMethod="#{participacaoBean.completePessoa}" />
+					
+				<p:outputLabel value="ModalidadeSubEvento" for="inputModalidadeSubEvento" />
+				<p:autoComplete id="inputModalidadeSubEvento" style="width:600px" dropdown="true"
+					multiple="false" forceSelection="true" var="modalidadeSubEvento"
+					itemLabel="#{modalidadeSubEvento.id}" itemValue="#{modalidadeSubEvento}"
+					value="#{participacaoBean.selecionado.modalidadeSubEvento}"
+					converter="modalidadeSubEventoConverter"
+					completeMethod="#{participacaoBean.completeModalidadeSubEvento}" />
 
+				<p:outputLabel value="Horas de Participação"></p:outputLabel>
+                <p:datePicker id="horasParticipou" value="#{participacaoBean.selecionado.horasParticipou}" dataInativo="true"></p:datePicker>
 
 				<p:outputLabel value="Arquivo"></p:outputLabel>
 				<p:inputText value="#{participacaoBean.selecionado.arquivo}"></p:inputText>
-
-				<p:fileUpload listener="#{participacaoBean.handleFileUpload}"
-					mode="advanced" dragDropSupport="true" update="formEditar:imagem"
-					sizeLimit="1000000" fileLimit="1" validateContentType="true"
-					accept=".gif,.jpg,.jpeg,.png" />
 
 				<p:commandButton value="Salvar" ajax="true"
 					update="consultar editar" icon="fa fa-save"
