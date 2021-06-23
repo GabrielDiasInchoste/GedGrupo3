@@ -7,6 +7,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
+import br.upf.ads.topicos.entities.Modalidade;
 import br.upf.ads.topicos.entities.ModalidadeSubEvento;
 import br.upf.ads.topicos.entities.Participacao;
 import br.upf.ads.topicos.entities.Pessoa;
@@ -25,6 +26,18 @@ public class ModalidadeSubEventoBean implements Serializable{
 	private List<ModalidadeSubEvento> lista; // atributo para vinculo com o datatable da consulta
 	private Boolean editando; // atributo para controlar o painel visível editar ou consultar
 	private GenericDao<ModalidadeSubEvento> dao = new GenericDao<ModalidadeSubEvento>();
+	
+	
+	public List<Modalidade> completeModalidadeSubEventoBean(String query) {
+		EntityManager em = JpaUtil.getInstance().getEntityManager();
+		 List<Modalidade> results = em.createQuery(
+		 "from Modalidade where upper(descricao) like "+
+		"'"+query.trim().toUpperCase()+"%' "+
+		 "order by descricao").getResultList();
+		 em.close();
+		 return results;
+		 }
+	
 	
 	public ModalidadeSubEventoBean() {
 		super();

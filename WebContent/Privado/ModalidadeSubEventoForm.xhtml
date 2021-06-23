@@ -69,8 +69,18 @@
 
 		<h:form>
 			<p:panelGrid columns="2">
+				
+				<p:outputLabel value="Modalidade" for="inputModalidade" />
+				<p:autoComplete id="inputModalidade" style="width:600px" dropdown="true"
+					multiple="false" forceSelection="true" var="modalidade"
+					itemLabel="#{modalidade.descricao}" itemValue="#{modalidade}"
+					value="#{modalidadeSubEventoBean.selecionado.modalidade}"
+					converter="modalidadeConverter"
+					completeMethod="#{modalidadeSubEventoBean.completeModalidadeSubEventoBean}" />
+			
+			
 				<p:outputLabel value="Id"></p:outputLabel>
-				<p:inputNumber decimalPlaces="0" disabled="true" placeholder="Auto"
+				<p:inputNumber decimalPlaces="0" disabled="false" 
 					value="#{modalidadeSubEventoBean.selecionado.id}"></p:inputNumber>
 
 				<p:commandButton value="Salvar" ajax="true"

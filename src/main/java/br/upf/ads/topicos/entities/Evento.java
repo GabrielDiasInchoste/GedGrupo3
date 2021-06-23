@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -36,15 +37,13 @@ public class Evento implements Serializable {
 	@Column(length = 60, nullable = false)
 	private String descricao;
 
-	@NotBlank(message = "A Data Inicio deve ser informado!")
-	@Column(length = 60, nullable = false)
+	@Column(length = 50)
 	private Date dataInicio;
 
-	@NotBlank(message = "A Data Termino deve ser informado!")
-	@Column(length = 60, nullable = false)
+	@Column(length = 50)
 	private Date dataTermino;
 
-	@NotBlank(message = "A Total Horas deve ser informado!")
+	@NotNull(message = "A Total Horas deve ser informado!")
 	@Column(length = 60, nullable = false)
 	private Float totalHoras;
 

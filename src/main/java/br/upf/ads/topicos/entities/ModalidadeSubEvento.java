@@ -1,6 +1,5 @@
 package br.upf.ads.topicos.entities;
 
-import br.upf.ads.topicos.entities.Modalidade;
 import br.upf.ads.topicos.entities.Template;
 
 import java.io.Serializable;
@@ -18,6 +17,9 @@ public class ModalidadeSubEvento implements Serializable {
 
 	@Id
 	private Integer id;
+	
+	@ManyToOne								
+	private Modalidade modalidade;
 
 	@ManyToOne								
 	private Modalidade modalidate;
@@ -26,15 +28,17 @@ public class ModalidadeSubEvento implements Serializable {
 	private Template template;
 
 	@ManyToOne
-	private SubEvento subEvento;	
+	private SubEvento subEvento;
 
 	public ModalidadeSubEvento() {
 		super();
 	}
 
-	public ModalidadeSubEvento(Integer id, Modalidade modalidate, Template template, SubEvento subEvento) {
+	public ModalidadeSubEvento(Integer id, Modalidade modalidade, Modalidade modalidate, Template template,
+			SubEvento subEvento) {
 		super();
 		this.id = id;
+		this.modalidade = modalidade;
 		this.modalidate = modalidate;
 		this.template = template;
 		this.subEvento = subEvento;
@@ -46,6 +50,14 @@ public class ModalidadeSubEvento implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Modalidade getModalidade() {
+		return modalidade;
+	}
+
+	public void setModalidade(Modalidade modalidade) {
+		this.modalidade = modalidade;
 	}
 
 	public Modalidade getModalidate() {
@@ -72,4 +84,10 @@ public class ModalidadeSubEvento implements Serializable {
 		this.subEvento = subEvento;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+	
 }
