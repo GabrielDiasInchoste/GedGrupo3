@@ -17,7 +17,7 @@ public class PessoaConverter implements Converter{
 		if (value != null && value.trim().length() > 0) {
 			try {
 				EntityManager em = JpaUtil.getInstance().getEntityManager();
-				Pessoa ret = em.find(Pessoa.class, Long.parseLong(value));
+				Pessoa ret = em.find(Pessoa.class, Integer.parseInt(value));
 				em.close();
 				return ret;
 			} catch (NumberFormatException e) {

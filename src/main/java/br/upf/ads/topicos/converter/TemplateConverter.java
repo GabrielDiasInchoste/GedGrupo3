@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import br.upf.ads.topicos.entities.Template;
 import br.upf.ads.topicos.jpa.JpaUtil;
 
-@FacesConverter(value = "templeteConverter")
+@FacesConverter(value = "templateConverter")
 public class TemplateConverter implements Converter{
 
 	public Template getAsObject(FacesContext fc, UIComponent uic, String value) {
@@ -22,7 +22,7 @@ public class TemplateConverter implements Converter{
 				return ret;
 			} catch (NumberFormatException e) {
 				throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-						"Erro de Conversao da Assina", "Assina invalida."));
+						"Erro de Conversao da Template", "Template invalida."));
 			}
 		} else
 			return null;

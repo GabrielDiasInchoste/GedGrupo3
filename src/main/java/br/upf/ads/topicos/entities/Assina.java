@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
@@ -32,8 +33,8 @@ public class Assina implements Serializable {
 	@Column(length = 20)
 	private String funcao;
 
-	@Column(length = 50)
-	private String imagem;
+	@Lob
+	private byte[] imagem;
 
 	@Column(length = 50)
 	private Date dataInativo;
@@ -45,7 +46,7 @@ public class Assina implements Serializable {
 
 	public Assina(Integer id,
 			@NotBlank(message = "O nome deve ser informado!") @Length(min = 2, max = 60, message = "O nome deve ter entre {min} e {max} caracteres.") String nome,
-			String funcao, String imagem, Date dataInativo) {
+			String funcao, byte[] imagem, Date dataInativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -78,11 +79,11 @@ public class Assina implements Serializable {
 		this.funcao = funcao;
 	}
 
-	public String getImagem() {
+	public byte[] getImagem() {
 		return imagem;
 	}
 
-	public void setImagem(String imagem) {
+	public void setImagem(byte[] imagem) {
 		this.imagem = imagem;
 	}
 

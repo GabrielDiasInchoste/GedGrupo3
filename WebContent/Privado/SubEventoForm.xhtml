@@ -70,12 +70,16 @@
 
 				<p:column headerText="Data Início" sortBy="#{p.dataInicio}"
 					filterBy="#{p.dataInicio}" filterMatchMode="contains">
-					<h:outputText value="#{p.dataInicio}"></h:outputText>
+					<h:outputText value="#{p.dataInicio}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+					</h:outputText>
 				</p:column>
 				
 				<p:column headerText="Data Término" sortBy="#{p.dataTermino}"
 					filterBy="#{p.dataTermino}" filterMatchMode="contains">
-					<h:outputText value="#{p.dataTermino}"></h:outputText>
+					<h:outputText value="#{p.dataTermino}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+					</h:outputText>
 				</p:column>
 				
 				<p:column headerText="Total de Horas"
@@ -99,23 +103,60 @@
 				<p:outputLabel value="Id"></p:outputLabel>
 				<p:inputNumber decimalPlaces="0" disabled="true" placeholder="Auto"
 					value="#{subEventoBean.selecionado.id}"></p:inputNumber>
+					
+					
+					
+					<p:outputLabel value="Tipo Evento" for="inputTipoEvento" />
+					<p:autoComplete id="inputTipoEvento" style="width:600px" dropdown="true"
+						multiple="false" forceSelection="true" var="tipoEvento"
+						itemLabel="#{tipoEvento.descricao}" itemValue="tipoEvento"
+						value="#{subEventoBean.selecionado.tipoEvento}"
+						converter="tipoEventoConverter"
+						completeMethod="#{subEventoBean.completeTipoEvento}" />
+				
+					<p:outputLabel value="Evento" for="inputEvento" />
+					<p:autoComplete id="inputEvento" style="width:600px" dropdown="true"
+						multiple="false" forceSelection="true" var="evento"
+						itemLabel="#{evento.descricao}" itemValue="evento"
+						value="#{subEventoBean.selecionado.evento}"
+						converter="eventoConverter"
+						completeMethod="#{subEventoBean.completeEvento}" />
+					
+					
 
-				<p:outputLabel value="Nome"></p:outputLabel>
+				<p:outputLabel value="Titulo"></p:outputLabel>
 				<p:inputText value="#{subEventoBean.selecionado.titulo}"></p:inputText>
 
 				<p:outputLabel value="Descrição"></p:outputLabel>
 				<p:inputText value="#{subEventoBean.selecionado.descricao}"></p:inputText>
 
 				<p:outputLabel value="Data de Início"></p:outputLabel>
-                <p:datePicker id="dataInicio" value="#{subEventoBean.selecionado.dataInicio}" dataInicio="true"></p:datePicker>
+                <p:datePicker id="dataHoraInicio" value="#{subEventoBean.selecionado.dataHoraInicio}" dataInicio="true"></p:datePicker>
 				
 				<p:outputLabel value="Data de Término"></p:outputLabel>
-                <p:datePicker id="dataTermino" value="#{subEventoBean.selecionado.dataTermino}" dataTermino="true"></p:datePicker>
+                <p:datePicker id="dataHoraTermino" value="#{subEventoBean.selecionado.dataHoraTermino}" dataTermino="true"></p:datePicker>
                 
                <p:outputLabel value="Total de Horas"></p:outputLabel>
 				<p:inputNumber
 					value="#{subEventoBean.selecionado.totalHoras}"></p:inputNumber>
                 
+ 
+               <p:outputLabel value="Assinante"></p:outputLabel>
+		        <p:selectManyMenu id="assinante" value="#{subEventoBean.selecionado.assina}"
+		                            converter="assinaConverter"
+		                            var="c" filter="true" filterMatchMode="contains" showCheckbox="true" styleClass="manymenu-advanced">
+		            
+		            <f:attribute name="collectionType" value="java.util.ArrayList"></f:attribute>                      
+		            <f:selectItems value="#{subEventoBean.assinantes}" var="assina" itemLabel="#{assina.nome}"
+		                            itemValue="assina"/>
+
+		            <p:column>
+		                <h:outputText value="#{c.nome}"/>
+		            </p:column>
+		        </p:selectManyMenu>
+	 
+ 
+ 
  
 				<p:commandButton value="Salvar" ajax="true"
 					update="consultar editar" icon="fa fa-save"

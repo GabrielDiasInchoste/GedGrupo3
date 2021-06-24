@@ -17,7 +17,7 @@ public class AssinaConverter implements Converter{
 		if (value != null && value.trim().length() > 0) {
 			try {
 				EntityManager em = JpaUtil.getInstance().getEntityManager();
-				Assina ret = em.find(Assina.class, Long.parseLong(value));
+				Assina ret = em.find(Assina.class, Integer.parseInt(value));
 				em.close();
 				return ret;
 			} catch (NumberFormatException e) {

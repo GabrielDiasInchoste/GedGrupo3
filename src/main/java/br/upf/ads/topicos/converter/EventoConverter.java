@@ -17,7 +17,7 @@ public class EventoConverter implements Converter{
 		if (value != null && value.trim().length() > 0) {
 			try {
 				EntityManager em = JpaUtil.getInstance().getEntityManager();
-				Evento ret = em.find(Evento.class, Long.parseLong(value));
+				Evento ret = em.find(Evento.class, Integer.parseInt(value));
 				em.close();
 				return ret;
 			} catch (NumberFormatException e) {

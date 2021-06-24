@@ -32,7 +32,7 @@ public class GenericDao<T> {
 		}
 	}	
 	
-	public List<T> createQuery(String hql) throws Exception{
+	public List<T> createQuery(String hql){
 		EntityManager em = null;
 		try {
 			em = JpaUtil.getInstance().getEntityManager();

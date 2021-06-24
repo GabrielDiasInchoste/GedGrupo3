@@ -59,17 +59,12 @@
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Arquivo" sortBy="#{p.arquivo}"
-					filterBy="#{p.arquivo}" filterMatchMode="contains">
-					<h:outputText value="#{p.arquivo}" required="true" />
-				</p:column>
+				<p:column headerText="Imagem" sortBy="#{p.getArquivo()}"
+					filterBy="#{p.getArquivo()}" filterMatchMode="contains">
+						<p:graphicImage id="imagem" stream="false" 
+						value="#{p.getArquivo()}"/>	
+				</p:column> 
 
-				<h:form enctype="multipart/form-data">
-					<p:fileUpload value="#{uploadBasicoBean.uploadedFile}"
-						mode="simple" />
-					<p:commandButton value="Enviar" ajax="false"
-						actionListener="#{uploadBasicoBean.upload}" />
-				</h:form>
 
 			</p:dataTable>
 		</h:form>
@@ -99,10 +94,14 @@
 					completeMethod="#{participacaoBean.completeModalidadeSubEvento}" />
 
 				<p:outputLabel value="Horas de Participação"></p:outputLabel>
-                <p:datePicker id="horasParticipou" value="#{participacaoBean.selecionado.horasParticipou}" dataInativo="true"></p:datePicker>
+                <p:inputNumber value="#{participacaoBean.selecionado.horasParticipou}"></p:inputNumber>
 
 				<p:outputLabel value="Arquivo"></p:outputLabel>
-				<p:inputText value="#{participacaoBean.selecionado.arquivo}"></p:inputText>
+				<p:fileUpload listener="#{participacaoBean.handleFileUpload}" mode="advanced"
+					dragDropSupport="true" 
+					sizeLimit="1000000" fileLimit="1"
+					validateContentType="true" accept=".gif,.jpg,.jpeg,.png"/>
+
 
 				<p:commandButton value="Salvar" ajax="true"
 					update="consultar editar" icon="fa fa-save"

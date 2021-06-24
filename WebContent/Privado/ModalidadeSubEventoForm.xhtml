@@ -69,18 +69,39 @@
 
 		<h:form>
 			<p:panelGrid columns="2">
-				
+
 				<p:outputLabel value="Modalidade" for="inputModalidade" />
-				<p:autoComplete id="inputModalidade" style="width:600px" dropdown="true"
-					multiple="false" forceSelection="true" var="modalidade"
-					itemLabel="#{modalidade.descricao}" itemValue="#{modalidade}"
+				<p:autoComplete id="inputModalidade" style="width:600px"
+					dropdown="true" multiple="false" forceSelection="true"
+					var="modalidade" itemLabel="#{modalidade.descricao}"
+					itemValue="#{modalidade}"
 					value="#{modalidadeSubEventoBean.selecionado.modalidade}"
 					converter="modalidadeConverter"
-					completeMethod="#{modalidadeSubEventoBean.completeModalidadeSubEventoBean}" />
-			
-			
+					completeMethod="#{modalidadeSubEventoBean.completeModalidade}" />
+
+				<p:outputLabel value="Template" for="inputTemplate" />
+				<p:autoComplete id="inputTemplate" style="width:600px"
+					dropdown="true" multiple="false" forceSelection="true"
+					var="template" itemLabel="#{template.descricao}"
+					itemValue="#{template}"
+					value="#{modalidadeSubEventoBean.selecionado.template}"
+					converter="templateConverter"
+					completeMethod="#{modalidadeSubEventoBean.completeTemplate}" />
+
+
+				<p:outputLabel value="SubEvento" for="inputSubEvento" />
+				<p:autoComplete id="inputSubEvento" style="width:600px"
+					dropdown="true" multiple="false" forceSelection="true"
+					var="subEvento" itemLabel="#{subEvento.descricao}"
+					itemValue="#{subEvento}"
+					value="#{modalidadeSubEventoBean.selecionado.subEvento}"
+					converter="subEventoConverter"
+					completeMethod="#{modalidadeSubEventoBean.completeSubEvento}" />
+
+
+
 				<p:outputLabel value="Id"></p:outputLabel>
-				<p:inputNumber decimalPlaces="0" disabled="false" 
+				<p:inputNumber decimalPlaces="0" disabled="false"
 					value="#{modalidadeSubEventoBean.selecionado.id}"></p:inputNumber>
 
 				<p:commandButton value="Salvar" ajax="true"

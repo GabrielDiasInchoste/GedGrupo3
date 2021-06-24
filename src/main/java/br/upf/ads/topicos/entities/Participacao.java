@@ -25,13 +25,11 @@ public class Participacao implements Serializable {
 	@SequenceGenerator(name = "ParticipacaoId", allocationSize = 1, initialValue = 1)
 	private Integer id;
 
-	@NotBlank(message = "O Texto deve ser informada!")
+	@Column
 	private Float horasParticipou;
 
-	@NotBlank(message = "A Arquivo deve ser informado!")
-	@Length(min = 5, max = 60, message = "A Arquivo deve ter entre {min} e {max} caracteres.")
-	@Column(length = 60, nullable = false)
-	private String arquivo;
+	@Lob
+	private byte[] arquivo;
 	
 	@ManyToOne
 	private Pessoa pessoa;
@@ -43,11 +41,10 @@ public class Participacao implements Serializable {
 		super();
 	}
 
-	
 
-	public Participacao(Integer id, @NotBlank(message = "O Texto deve ser informada!") Float horasParticipou,
+	public Participacao(Integer id, Float horasParticipou,
 			@NotBlank(message = "A Arquivo deve ser informado!") @Length(min = 5, max = 60, message = "A Arquivo deve ter entre {min} e {max} caracteres.") byte[] arquivoBytes,
-			String arquivo, Pessoa pessoa, ModalidadeSubEvento modalidadeSubEvento) {
+			byte[] arquivo, Pessoa pessoa, ModalidadeSubEvento modalidadeSubEvento) {
 		super();
 		this.id = id;
 		this.horasParticipou = horasParticipou;
@@ -81,13 +78,13 @@ public class Participacao implements Serializable {
 	}
 
 
-	public String getArquivo() {
+	public byte[] getArquivo() {
 		return arquivo;
 	}
 
 
 
-	public void setArquivo(String arquivo) {
+	public void setArquivo(byte[] arquivo) {
 		this.arquivo = arquivo;
 	}
 
@@ -113,12 +110,6 @@ public class Participacao implements Serializable {
 
 	public void setModalidadeSubEvento(ModalidadeSubEvento modalidadeSubEvento) {
 		this.modalidadeSubEvento = modalidadeSubEvento;
-	}
-
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	

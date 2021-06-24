@@ -68,10 +68,12 @@
 					<h:outputText value="#{p.funcao}"></h:outputText>
 				</p:column>
 
-				<p:column headerText="Imagem" sortBy="#{p.imagem}"
-					filterBy="#{p.imagem}" filterMatchMode="contains">
-					<h:outputText value="#{p.imagem}"></h:outputText>
-				</p:column>
+				<p:column headerText="Imagem" sortBy="#{p.getImagem()}"
+					filterBy="#{p.getImagem()}" filterMatchMode="contains">
+						<p:graphicImage id="imagem" stream="false" 
+						value="#{p.getImagem()}"/>	
+				</p:column> 
+				
 				
 				<p:column headerText="Data Inativos" sortBy="#{p.dataInativo}"
 					filterBy="#{p.dataInativo}" filterMatchMode="contains">
@@ -97,9 +99,13 @@
 
 				<p:outputLabel value="Função"></p:outputLabel>
 				<p:inputText value="#{assinaBean.selecionado.funcao}"></p:inputText>
-
+				
 				<p:outputLabel value="Imagem"></p:outputLabel>
-				<p:inputText value="#{assinaBean.selecionado.imagem}"></p:inputText>
+				<p:fileUpload listener="#{assinaBean.handleFileUpload}" mode="advanced"
+					dragDropSupport="true" 
+					sizeLimit="1000000" fileLimit="1"
+					validateContentType="true" accept=".gif,.jpg,.jpeg,.png"/>
+
 				
 				<p:outputLabel value="Data Inativo"></p:outputLabel>
                 <p:datePicker id="dataInativo" value="#{assinaBean.selecionado.dataInativo}" dataInativo="true"></p:datePicker>

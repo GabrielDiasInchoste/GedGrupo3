@@ -18,7 +18,7 @@ public class ParticipacaoConverter implements Converter{
 		if (value != null && value.trim().length() > 0) {
 			try {
 				EntityManager em = JpaUtil.getInstance().getEntityManager();
-				Participacao ret = em.find(Participacao.class, Long.parseLong(value));
+				Participacao ret = em.find(Participacao.class, Integer.parseInt(value));
 				em.close();
 				return ret;
 			} catch (NumberFormatException e) {

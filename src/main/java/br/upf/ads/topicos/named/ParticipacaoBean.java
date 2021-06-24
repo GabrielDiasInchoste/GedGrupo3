@@ -1,17 +1,12 @@
 package br.upf.ads.topicos.named;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.imageio.ImageIO;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
@@ -39,27 +34,35 @@ public class ParticipacaoBean implements Serializable {
 	private Boolean editando; // atributo para controlar o painel visível editar ou consultar
 	private GenericDao<Participacao> dao = new GenericDao<Participacao>();
 	private UploadedFile file;
-	
 
-	
 	public List<Pessoa> completePessoa(String query) {
 		EntityManager em = JpaUtil.getInstance().getEntityManager();
-		 List<Pessoa> results = em.createQuery(
-		 "from Pessoa where upper(nome) like "+
-		"'"+query.trim().toUpperCase()+"%' "+
-		 "order by nome").getResultList();
-		 em.close();
-		 return results;
-		 }
-	
+		List<Pessoa> results = em.createQuery(
+				"from Pessoa where upper(nome) like " + "'" + query.trim().toUpperCase() + "%' " + "order by nome")
+				.getResultList();
+		em.close();
+		return results;
+	}
+
 	public List<ModalidadeSubEvento> completeModalidadeSubEvento(Integer query) {
 		EntityManager em = JpaUtil.getInstance().getEntityManager();
-		 List<ModalidadeSubEvento> results = em.createQuery(
-			"from ModalidadeSubEvento order by id").getResultList();
-			 em.close();
-		 return results;
-		 }
-	
+		List<ModalidadeSubEvento> results = em.createQuery("from ModalidadeSubEvento order by id").getResultList();
+		em.close();
+		return results;
+	}
+
+	public void handleFileUpload(FileUploadEvent event) {
+		selecionado.setArquivo(event.getFile().getContent());
+	}
+
+	public StreamedContent getImagem() throws IOException {
+		if (selecionado != null && selecionado.getArquivo() != null) {
+			InputStream io = new ByteArrayInputStream(selecionado.getArquivo());
+			return DefaultStreamedContent.builder().contentType("image/jpeg").stream(() -> io).build();
+		} else {
+			return null;
+		}
+	}
 
 	public ParticipacaoBean() {
 		super();

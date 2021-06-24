@@ -7,22 +7,23 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import javax.persistence.EntityManager;
 
-import br.upf.ads.topicos.entities.Modalidade;
+import br.upf.ads.topicos.entities.SubEvento;
+import br.upf.ads.topicos.entities.TipoEvento;
 import br.upf.ads.topicos.jpa.JpaUtil;
 
-@FacesConverter(value = "modalidadeConverter")
-public class ModalidadeConverter implements Converter{
+@FacesConverter(value = "tipoEventoConverter")
+public class TipoEventoConverter implements Converter{
 
-	public Modalidade getAsObject(FacesContext fc, UIComponent uic, String value) {
+	public TipoEvento getAsObject(FacesContext fc, UIComponent uic, String value) {
 		if (value != null && value.trim().length() > 0) {
 			try {
 				EntityManager em = JpaUtil.getInstance().getEntityManager();
-				Modalidade ret = em.find(Modalidade.class, Integer.parseInt(value));
+				TipoEvento ret = em.find(TipoEvento.class, Integer.parseInt(value));
 				em.close();
 				return ret;
 			} catch (NumberFormatException e) {
 				throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-						"Erro de Conversao da Modalidade", "Modalidade invalida."));
+						"Erro de Conversao da TipoEvento", "TipoEvento invalida."));
 			}
 		} else
 			return null;
@@ -30,7 +31,7 @@ public class ModalidadeConverter implements Converter{
 
 	public String getAsString(FacesContext fc, UIComponent uic, Object object) {
 		if (object != null) {
-			return String.valueOf(((Modalidade) object).getId());
+			return String.valueOf(((SubEvento) object).getId());
 		} else
 			return null;
 	}

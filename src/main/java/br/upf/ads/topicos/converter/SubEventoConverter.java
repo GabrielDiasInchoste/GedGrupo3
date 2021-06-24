@@ -17,7 +17,7 @@ public class SubEventoConverter implements Converter{
 		if (value != null && value.trim().length() > 0) {
 			try {
 				EntityManager em = JpaUtil.getInstance().getEntityManager();
-				SubEvento ret = em.find(SubEvento.class, Long.parseLong(value));
+				SubEvento ret = em.find(SubEvento.class, Integer.parseInt(value));
 				em.close();
 				return ret;
 			} catch (NumberFormatException e) {
