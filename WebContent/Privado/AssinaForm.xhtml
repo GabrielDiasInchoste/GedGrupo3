@@ -15,7 +15,7 @@
 
 
 	<p:panel id="consultar" visible="#{!assinaBean.editando}">
-		<h:form>
+		<h:form >
 
 			<p:commandButton value="Incluir" ajax="true"
 				update="consultar editar" icon="fa fa-plus"
@@ -68,10 +68,8 @@
 					<h:outputText value="#{p.funcao}"></h:outputText>
 				</p:column>
 
-				<p:column headerText="Imagem" sortBy="#{p.getImagem()}"
-					filterBy="#{p.getImagem()}" filterMatchMode="contains">
-						<p:graphicImage id="imagem" stream="false" 
-						value="#{p.getImagem()}"/>	
+				<p:column headerText="Imagem">
+						<p:graphicImage id="imagem" stream="false" value="#{p.getImagemStream()}"/>	
 				</p:column> 
 				
 				
@@ -88,7 +86,7 @@
 
 	<p:panel id="editar" visible="#{assinaBean.editando}">
 
-		<h:form>
+		<h:form enctype="multipart/form-data">
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Id"></p:outputLabel>
 				<p:inputNumber decimalPlaces="0" disabled="true" placeholder="Auto"
@@ -104,7 +102,7 @@
 				<p:fileUpload listener="#{assinaBean.handleFileUpload}" mode="advanced"
 					dragDropSupport="true" 
 					sizeLimit="1000000" fileLimit="1"
-					validateContentType="true" accept=".gif,.jpg,.jpeg,.png"/>
+					validateContentType="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
 
 				
 				<p:outputLabel value="Data Inativo"></p:outputLabel>

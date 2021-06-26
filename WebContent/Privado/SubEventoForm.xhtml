@@ -69,15 +69,15 @@
 				</p:column>
 
 				<p:column headerText="Data Início" sortBy="#{p.dataInicio}"
-					filterBy="#{p.dataInicio}" filterMatchMode="contains">
-					<h:outputText value="#{p.dataInicio}">
+					filterBy="#{p.dataHoraInicio}" filterMatchMode="contains">
+					<h:outputText value="#{p.dataHoraInicio}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 					</h:outputText>
 				</p:column>
 				
 				<p:column headerText="Data Término" sortBy="#{p.dataTermino}"
-					filterBy="#{p.dataTermino}" filterMatchMode="contains">
-					<h:outputText value="#{p.dataTermino}">
+					filterBy="#{p.dataHoraTermino}" filterMatchMode="contains">
+					<h:outputText value="#{p.dataHoraTermino}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 					</h:outputText>
 				</p:column>
@@ -105,24 +105,8 @@
 					value="#{subEventoBean.selecionado.id}"></p:inputNumber>
 					
 					
-					
-					<p:outputLabel value="Tipo Evento" for="inputTipoEvento" />
-					<p:autoComplete id="inputTipoEvento" style="width:600px" dropdown="true"
-						multiple="false" forceSelection="true" var="tipoEvento"
-						itemLabel="#{tipoEvento.descricao}" itemValue="tipoEvento"
-						value="#{subEventoBean.selecionado.tipoEvento}"
-						converter="tipoEventoConverter"
-						completeMethod="#{subEventoBean.completeTipoEvento}" />
-				
-					<p:outputLabel value="Evento" for="inputEvento" />
-					<p:autoComplete id="inputEvento" style="width:600px" dropdown="true"
-						multiple="false" forceSelection="true" var="evento"
-						itemLabel="#{evento.descricao}" itemValue="evento"
-						value="#{subEventoBean.selecionado.evento}"
-						converter="eventoConverter"
-						completeMethod="#{subEventoBean.completeEvento}" />
-					
-					
+
+							
 
 				<p:outputLabel value="Titulo"></p:outputLabel>
 				<p:inputText value="#{subEventoBean.selecionado.titulo}"></p:inputText>
@@ -131,32 +115,43 @@
 				<p:inputText value="#{subEventoBean.selecionado.descricao}"></p:inputText>
 
 				<p:outputLabel value="Data de Início"></p:outputLabel>
-                <p:datePicker id="dataHoraInicio" value="#{subEventoBean.selecionado.dataHoraInicio}" dataInicio="true"></p:datePicker>
+                <p:datePicker id="dataHoraInicio" value="#{subEventoBean.selecionado.dataHoraInicio}" dataHoraInicio="true"></p:datePicker>
 				
 				<p:outputLabel value="Data de Término"></p:outputLabel>
-                <p:datePicker id="dataHoraTermino" value="#{subEventoBean.selecionado.dataHoraTermino}" dataTermino="true"></p:datePicker>
+                <p:datePicker id="dataHoraTermino" value="#{subEventoBean.selecionado.dataHoraTermino}" dataHoraTermino="true"></p:datePicker>
                 
-               <p:outputLabel value="Total de Horas"></p:outputLabel>
-				<p:inputNumber
-					value="#{subEventoBean.selecionado.totalHoras}"></p:inputNumber>
-                
+                <p:outputLabel value="Total de Horas"></p:outputLabel>
+				<p:inputNumber value="#{subEventoBean.selecionado.totalHoras}"></p:inputNumber>
+                					<p:outputLabel value="Tipo Evento" for="inputTipoEvento" />
+					<p:autoComplete id="inputTipoEvento" style="width:600px" dropdown="true"
+						multiple="false" forceSelection="true" var="tipoEvento"
+						itemLabel="#{tipoEvento.descricao}" itemValue="#{tipoEvento}"
+						value="#{subEventoBean.selecionado.tipoEvento}"
+						converter="tipoEventoConverter"
+						completeMethod="#{subEventoBean.completeTipoEvento}" />
+				
+					<p:outputLabel value="Evento" for="inputEvento" />
+					<p:autoComplete id="inputEvento" style="width:600px" dropdown="true"
+						multiple="false" forceSelection="true" var="evento"
+						itemLabel="#{evento.descricao}" itemValue="#{evento}"
+						value="#{subEventoBean.selecionado.evento}"
+						converter="eventoConverter"
+						completeMethod="#{subEventoBean.completeEvento}" />
  
-               <p:outputLabel value="Assinante"></p:outputLabel>
+               <p:outputLabel value="Assinantes:" for="assinante"  ></p:outputLabel>
 		        <p:selectManyMenu id="assinante" value="#{subEventoBean.selecionado.assina}"
-		                            converter="assinaConverter"
-		                            var="c" filter="true" filterMatchMode="contains" showCheckbox="true" styleClass="manymenu-advanced">
+		                            converter="#{assinaConverter}"
+		                            var="c" filter="true" filterMatchMode="contains" showCheckbox="false" styleClass="manymenu-advanced">
 		            
-		            <f:attribute name="collectionType" value="java.util.ArrayList"></f:attribute>                      
-		            <f:selectItems value="#{subEventoBean.assinantes}" var="assina" itemLabel="#{assina.nome}"
-		                            itemValue="assina"/>
+		            <f:attribute name="collectionType" value="java.util.ArrayList" /> 
+		                                 
+		            <f:selectItems value="#{subEventoBean.assinantes}" var="a" itemLabel="#{a.nome}" itemValue="#{a}"/>
 
 		            <p:column>
 		                <h:outputText value="#{c.nome}"/>
 		            </p:column>
 		        </p:selectManyMenu>
 	 
- 
- 
  
 				<p:commandButton value="Salvar" ajax="true"
 					update="consultar editar" icon="fa fa-save"

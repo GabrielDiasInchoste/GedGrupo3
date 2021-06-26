@@ -31,7 +31,7 @@ public class TipoEventoConverter implements Converter{
 
 	public String getAsString(FacesContext fc, UIComponent uic, Object object) {
 		if (object != null) {
-			return String.valueOf(((SubEvento) object).getId());
+			return String.valueOf(((TipoEvento) object).getId());
 		} else
 			return null;
 	}

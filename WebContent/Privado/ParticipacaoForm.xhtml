@@ -59,10 +59,9 @@
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Imagem" sortBy="#{p.getArquivo()}"
-					filterBy="#{p.getArquivo()}" filterMatchMode="contains">
+				<p:column headerText="Imagem" >
 						<p:graphicImage id="imagem" stream="false" 
-						value="#{p.getArquivo()}"/>	
+						value="#{p.getArquivoStream()}"/>	
 				</p:column> 
 
 

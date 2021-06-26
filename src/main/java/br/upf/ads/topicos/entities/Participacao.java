@@ -2,6 +2,9 @@ package br.upf.ads.topicos.entities;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -14,6 +17,8 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 @Entity
 public class Participacao implements Serializable {
@@ -82,7 +87,14 @@ public class Participacao implements Serializable {
 		return arquivo;
 	}
 
-
+	public StreamedContent getArquivoStream() throws IOException {
+		if (arquivo != null && arquivo != null) {
+			InputStream io = new ByteArrayInputStream(arquivo);
+			return DefaultStreamedContent.builder().contentType("image/jpeg").stream(() -> io).build();
+		} else {
+			return null;
+		}
+	}
 
 	public void setArquivo(byte[] arquivo) {
 		this.arquivo = arquivo;

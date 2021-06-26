@@ -2,6 +2,9 @@ package br.upf.ads.topicos.entities;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,6 +17,8 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 @Entity
 public class Assina implements Serializable {
@@ -38,7 +43,6 @@ public class Assina implements Serializable {
 
 	@Column(length = 50)
 	private Date dataInativo;
-
 
 	public Assina() {
 		super();
@@ -81,6 +85,15 @@ public class Assina implements Serializable {
 
 	public byte[] getImagem() {
 		return imagem;
+	}
+
+	public StreamedContent getImagemStream() throws IOException {
+		if (imagem != null && imagem != null) {
+			InputStream io = new ByteArrayInputStream(imagem);
+			return DefaultStreamedContent.builder().contentType("image/jpeg").stream(() -> io).build();
+		} else {
+			return null;
+		}
 	}
 
 	public void setImagem(byte[] imagem) {

@@ -142,4 +142,12 @@ public class ParticipacaoBean implements Serializable {
 		this.editando = editando;
 	}
 
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+
 }

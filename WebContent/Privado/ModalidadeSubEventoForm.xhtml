@@ -58,7 +58,10 @@
 					<h:outputText value="#{p.id}" required="true" />
 				</p:column>
 
-
+				<p:column headerText="Template" sortBy="#{p.template.descricao}" sortOrder="asc"
+					filterBy="#{p.template.descricao}" filterMatchMode="exact">
+					<h:outputText value="#{p.template.descricao}" required="true" />
+				</p:column>
 			</p:dataTable>
 		</h:form>
 

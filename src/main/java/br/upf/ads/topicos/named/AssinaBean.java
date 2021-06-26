@@ -122,4 +122,12 @@ public class AssinaBean implements Serializable {
 		this.editando = editando;
 	}
 
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+
 }
