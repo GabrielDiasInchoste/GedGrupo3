@@ -57,11 +57,67 @@ form {
 							<p:menuitem value="Produtos" url="ProdutosList.xhtml"
 								target="centro" icon="pi pi-fw pi-external-link" />
 
-							<p:menuitem value="Pessoa Popup" icon="pi pi-fw pi-user"
-								actionListener="#{homeBean.abrirPopup('PessoaForm.xhtml', 600, 600, true)}" />
-
-						</p:submenu>
-
+							<p:menuitem value="Relatório de Assinaturas" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relAssinaBean.gerarPDF()}" />
+							</p:menuitem>
+							
+								<p:menuitem value="Relatório de Eventos" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relEventoBean.gerarPDF()}" />
+							</p:menuitem>
+							
+								<p:menuitem value="Relatório de Modalidades" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relModalidadeBean.gerarPDF()}" />
+							</p:menuitem>
+							
+								<p:menuitem value="Relatório de Modalidade SubEventos" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relModalidadeSubEventoBean.gerarPDF()}" />
+							</p:menuitem>
+							
+								<p:menuitem value="Relatório de Participação" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relParticipacaoBean.gerarPDF()}" />
+							</p:menuitem>
+							
+								<p:menuitem value="Relatório de Pessoas" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relPessoaBean.gerarPDF()}" />
+							</p:menuitem>
+							
+							
+								<p:menuitem value="Relatório de SubEventos" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relSubEventoBean.gerarPDF()}" />
+							</p:menuitem>
+							
+								<p:menuitem value="Relatório de Template" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relTemplateBean.gerarPDF()}" />
+							</p:menuitem>
+							
+								<p:menuitem value="Relatório de Tipo de Evento" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relTipoEventoBean.gerarPDF()}" />
+							</p:menuitem>
+							
+								<p:menuitem value="Relatório de Usuários" icon="pi pi-refresh"
+								ajax="false" target="_blank">
+								<p:fileDownload contentDisposition="inline"
+									value="#{relUsuarioBean.gerarPDF()}" />
+							</p:menuitem>
+							
 
 						<p:menuitem value="Sair" icon="pi pi-fw pi-power-off"
 							action="#{loginControle.sair}" ajax="false" />
@@ -76,7 +132,7 @@ form {
 
 					<p:toolbar style="padding-top: 0px; padding-bottom: 0px;">
 						<p:toolbarGroup>
-			
+
 							<p:commandButton type="button" value="Open"
 								icon="pi pi-folder-open" styleClass="ui-button-success" />
 
@@ -131,29 +187,30 @@ form {
 
 							<p:menuitem value="Tipo Evento" url="TipoEventoForm.xhtml"
 								target="centro" icon="pi pi-fw pi-thumbs-up" />
-							
-							<p:menuitem value="Evento" url="EventoForm.xhtml"
-								target="centro" icon="pi pi-fw pi-desktop" />	
-								
+
+							<p:menuitem value="Evento" url="EventoForm.xhtml" target="centro"
+								icon="pi pi-fw pi-desktop" />
+
 							<p:menuitem value="SubEvento" url="SubEventoForm.xhtml"
-								target="centro" icon="pi pi-fw pi-tablet" />	
-								
-							<p:menuitem value="ModalidadeSubEvento" url="ModalidadeSubEventoForm.xhtml"
-								target="centro" icon="pi pi-fw fa-street-view" />		
-							
+								target="centro" icon="pi pi-fw pi-tablet" />
+
+							<p:menuitem value="ModalidadeSubEvento"
+								url="ModalidadeSubEventoForm.xhtml" target="centro"
+								icon="pi pi-fw fa-street-view" />
+
 							<p:menuitem value="Template" url="TemplateForm.xhtml"
-								target="centro" icon="pi pi-fw pi-chart-bar" />	
-								
+								target="centro" icon="pi pi-fw pi-chart-bar" />
+
 							<p:menuitem value="Modalidade" url="ModalidadeForm.xhtml"
-								target="centro" icon="pi pi-fw pi-chart-line" />	
-								
-							<p:menuitem value="Assina" url="AssinaForm.xhtml"
-								target="centro" icon="pi pi-fw pi-pencil" />	
-								
+								target="centro" icon="pi pi-fw pi-chart-line" />
+
+							<p:menuitem value="Assina" url="AssinaForm.xhtml" target="centro"
+								icon="pi pi-fw pi-pencil" />
+
 							<p:menuitem value="Participação" url="ParticipacaoForm.xhtml"
-								target="centro" icon="pi pi-fw fa-street-view" />	
-								
-												
+								target="centro" icon="pi pi-fw fa-street-view" />
+
+
 
 						</p:submenu>
 						<p:submenu label="Navigations">
