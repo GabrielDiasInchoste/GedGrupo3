@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ModalidadeSubEvento" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a1f690a3-5977-4467-85f8-6b0bcd5b7210">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ModalidadeSubEvento1" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a1f690a3-5977-4467-85f8-6b0bcd5b7210">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.tables">
-		<![CDATA[c3ViZXZlbnRvX21vZGFsaWRhZGVzdWJldmVudG8gQVMgLDg5LDg5LDFhZTQ1YTc0LWMyN2UtNDhi
-Yi04MTRjLTI2YjEzYTVmM2NjMTs=]]>
+		<![CDATA[bW9kYWxpZGFkZXN1YmV2ZW50byBBUyAsMTEyLDYwLDQyNjkwMmYwLWUxMDQtNDIzOS04NzhmLTYy
+OWY3NzZmZDM1Yzs=]]>
 	</property>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="gedGrupo3"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
@@ -14,19 +14,32 @@ Yi04MTRjLTI2YjEzYTVmM2NjMTs=]]>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT subevento_id,
-	modalidadesubevento_id
-FROM subevento_modalidadesubevento]]>
+		<![CDATA[SELECT id,
+	modalidade_id,
+	subevento_id,
+	template_id
+FROM modalidadesubevento
+ORDER BY modalidadesubevento.id DESC]]>
 	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="modalidadesubevento"/>
+	</field>
+	<field name="modalidade_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="modalidade_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="modalidade_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="modalidadesubevento"/>
+	</field>
 	<field name="subevento_id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="subevento_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="subevento_id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="subevento_modalidadesubevento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="modalidadesubevento"/>
 	</field>
-	<field name="modalidadesubevento_id" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="modalidadesubevento_id"/>
-		<property name="com.jaspersoft.studio.field.label" value="modalidadesubevento_id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="subevento_modalidadesubevento"/>
+	<field name="template_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="template_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="template_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="modalidadesubevento"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -34,17 +47,17 @@ FROM subevento_modalidadesubevento]]>
 	<title>
 		<band height="90" splitType="Stretch">
 			<image>
-				<reportElement x="370" y="0" width="150" height="80" uuid="aa4caea2-8e13-44ac-8831-007570cb78a2"/>
+				<reportElement x="370" y="0" width="150" height="80" uuid="13c9e8ba-711e-403e-a09e-fc3d605b155e"/>
 				<imageExpression><![CDATA["https://www.upf.br//Assets/img/default_noticia_facebook.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement style="Title" x="10" y="0" width="237" height="33" uuid="fa4f4389-c75a-432c-a93e-01147535d0d9"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[AppGed Grupo 3]]></text>
+				<reportElement style="SubTitle" x="10" y="50" width="260" height="40" uuid="2990fc75-927a-4985-892c-45f46a7ba3ed"/>
+				<text><![CDATA[Relatório de Participação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="10" y="50" width="330" height="40" uuid="7d8647d2-5021-4573-af27-d33a02580bff"/>
-				<text><![CDATA[Relatório de ModalidadeSubEvento]]></text>
+				<reportElement style="Title" x="10" y="0" width="237" height="33" uuid="1674249c-8415-4e4b-8488-8d984c893f45"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[AppGed Grupo 3]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -60,16 +73,28 @@ FROM subevento_modalidadesubevento]]>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="0" y="19" width="277" height="15" uuid="71290ab4-358a-4823-a479-f9448218a680">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f52f882-78d4-4e86-88d1-b4a859540743"/>
+				<reportElement style="Column header" x="0" y="19" width="138" height="15" uuid="3edd5f58-8857-43d6-87bf-1c9db7de4452">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3deeaea-4e6b-4aa4-b6f1-75b0062f07a5"/>
 				</reportElement>
-				<text><![CDATA[Código SubEvento]]></text>
+				<text><![CDATA[Código]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="277" y="19" width="277" height="15" uuid="a395316d-8572-407e-8d5e-f5aa1fa6e272">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0eae2931-6a15-4f24-8e92-f6f7a7d3ac67"/>
+				<reportElement style="Column header" x="138" y="19" width="138" height="15" uuid="dd9c7593-8c39-4570-a9b4-2947876b6cb6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3243b3f0-2967-4cd8-b6ab-c84802f734d5"/>
 				</reportElement>
-				<text><![CDATA[Código Modalidade SubEvento]]></text>
+				<text><![CDATA[Modalidade Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="19" width="138" height="15" uuid="a3d6d683-9c84-4470-b168-4d5fb3cdd78f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="240832b6-15f6-4ce8-bcf6-c04ac36c6af2"/>
+				</reportElement>
+				<text><![CDATA[Subevento Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="414" y="19" width="138" height="15" uuid="f962b97b-dff1-41ef-8ee4-7aa0227ba8e4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bf42ddfb-658d-42e0-8033-3ab7304aa0c4"/>
+				</reportElement>
+				<text><![CDATA[Template Código]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -82,16 +107,28 @@ FROM subevento_modalidadesubevento]]>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement style="Detail" x="0" y="0" width="277" height="15" uuid="bb2ce000-4bc4-4770-affe-d28139d93127">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f52f882-78d4-4e86-88d1-b4a859540743"/>
+				<reportElement style="Detail" x="0" y="0" width="138" height="15" uuid="74996a90-55b6-4724-af13-5c26315456c6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3deeaea-4e6b-4aa4-b6f1-75b0062f07a5"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="138" y="0" width="138" height="15" uuid="bc0b1e5f-a208-4cdb-9d15-4c6bd30eb693">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3243b3f0-2967-4cd8-b6ab-c84802f734d5"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{modalidade_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="0" width="138" height="15" uuid="96d0da17-ce00-4987-b7d2-8bc871e51210">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="240832b6-15f6-4ce8-bcf6-c04ac36c6af2"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{subevento_id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="277" y="0" width="277" height="15" uuid="7c0c799b-9bb9-4ad5-8952-a95a63d2f420">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0eae2931-6a15-4f24-8e92-f6f7a7d3ac67"/>
+				<reportElement style="Detail" x="414" y="0" width="138" height="15" uuid="d2bb38cd-14ff-4592-9673-a478178443a6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bf42ddfb-658d-42e0-8033-3ab7304aa0c4"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{modalidadesubevento_id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{template_id}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
