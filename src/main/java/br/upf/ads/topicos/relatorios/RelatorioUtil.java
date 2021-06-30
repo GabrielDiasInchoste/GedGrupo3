@@ -1,7 +1,6 @@
 package br.upf.ads.topicos.relatorios;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -16,6 +15,7 @@ import org.hibernate.engine.spi.SessionImplementor;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import br.upf.ads.topicos.jpa.JpaUtil;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;

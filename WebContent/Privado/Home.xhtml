@@ -46,81 +46,72 @@ form {
 						<p:menuitem value="Principal" url="Home.xhtml"
 							icon="pi pi-fw pi-bookmark" />
 
-						<p:submenu label="Cadastros" icon="pi pi-fw pi-file">
-							<p:submenu label="Básicos" icon="pi pi-fw pi-plus">
-								<p:menuitem value="Bookmark" icon="pi pi-fw pi-bookmark" />
-								<p:menuitem value="Video" icon="pi pi-fw pi-video" />
-							</p:submenu>
-
-							<p:menuitem value="Pessoa" url="PessoaForm.xhtml" target="centro"
-								icon="pi pi-fw pi-thumbs-up" />
-							<p:menuitem value="Produtos" url="ProdutosList.xhtml"
-								target="centro" icon="pi pi-fw pi-external-link" />
+						<p:submenu label="Relatorios" icon="pi pi-fw pi-file">
 
 							<p:menuitem value="Relatório de Assinaturas" icon="pi pi-refresh"
 								ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relAssinaBean.gerarPDF()}" />
 							</p:menuitem>
-							
-								<p:menuitem value="Relatório de Eventos" icon="pi pi-refresh"
+
+							<p:menuitem value="Relatório de Eventos" icon="pi pi-refresh"
 								ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relEventoBean.gerarPDF()}" />
 							</p:menuitem>
-							
-								<p:menuitem value="Relatório de Modalidades" icon="pi pi-refresh"
+
+							<p:menuitem value="Relatório de Modalidades" icon="pi pi-refresh"
 								ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relModalidadeBean.gerarPDF()}" />
 							</p:menuitem>
-							
-								<p:menuitem value="Relatório de Modalidade SubEventos" icon="pi pi-refresh"
-								ajax="false" target="_blank">
+
+							<p:menuitem value="Relatório de Modalidade SubEventos"
+								icon="pi pi-refresh" ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relModalidadeSubEventoBean.gerarPDF()}" />
 							</p:menuitem>
-							
-								<p:menuitem value="Relatório de Participação" icon="pi pi-refresh"
-								ajax="false" target="_blank">
+
+							<p:menuitem value="Relatório de Participação"
+								icon="pi pi-refresh" ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relParticipacaoBean.gerarPDF()}" />
 							</p:menuitem>
-							
-								<p:menuitem value="Relatório de Pessoas" icon="pi pi-refresh"
+
+							<p:menuitem value="Relatório de Pessoas" icon="pi pi-refresh"
 								ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relPessoaBean.gerarPDF()}" />
 							</p:menuitem>
-							
-							
-								<p:menuitem value="Relatório de SubEventos" icon="pi pi-refresh"
+
+
+							<p:menuitem value="Relatório de SubEventos" icon="pi pi-refresh"
 								ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relSubEventoBean.gerarPDF()}" />
 							</p:menuitem>
-							
-								<p:menuitem value="Relatório de Template" icon="pi pi-refresh"
+
+							<p:menuitem value="Relatório de Template" icon="pi pi-refresh"
 								ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relTemplateBean.gerarPDF()}" />
 							</p:menuitem>
-							
-								<p:menuitem value="Relatório de Tipo de Evento" icon="pi pi-refresh"
-								ajax="false" target="_blank">
+
+							<p:menuitem value="Relatório de Tipo de Evento"
+								icon="pi pi-refresh" ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relTipoEventoBean.gerarPDF()}" />
 							</p:menuitem>
-							
-								<p:menuitem value="Relatório de Usuários" icon="pi pi-refresh"
+
+							<p:menuitem value="Relatório de Usuários" icon="pi pi-refresh"
 								ajax="false" target="_blank">
 								<p:fileDownload contentDisposition="inline"
 									value="#{relUsuarioBean.gerarPDF()}" />
 							</p:menuitem>
-							
 
-						<p:menuitem value="Sair" icon="pi pi-fw pi-power-off"
-							action="#{loginControle.sair}" ajax="false" />
+						</p:submenu>
+							<p:menuitem value="Sair" icon="pi pi-fw pi-power-off"
+								action="#{loginControle.sair}" ajax="false" />
 					</p:menubar>
 				</h:form>
 			</div>
