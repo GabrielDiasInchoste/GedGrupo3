@@ -14,17 +14,14 @@ import br.upf.ads.topicos.jsf.JsfUtil;
 public class RelAssinaBean {
 	public StreamedContent gerarPDF() {
 		try {
-		HashMap parameters = new HashMap();
-		return RelatorioUtil.gerarStreamRelatorioPDF(
-		"WEB-INF/relatorios/Assina/Assina.jasper",
-		parameters, "Assina.pdf");
+			HashMap parameters = new HashMap();
+			return RelatorioUtil.gerarStreamRelatorioPDF("WEB-INF/relatorios/Assina/Assina.jasper", parameters,
+					"Assina.pdf");
 		} catch (Exception e) {
-		e.printStackTrace();
-		JsfUtil.addErrorMessage(e.getMessage());
-		return null;
+			e.printStackTrace();
+			JsfUtil.addErrorMessage(e.getMessage());
+			return null;
 		}
-		}
-
+	}
 
 }
-			

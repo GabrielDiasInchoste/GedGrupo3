@@ -14,17 +14,14 @@ import br.upf.ads.topicos.jsf.JsfUtil;
 public class RelUsuarioBean {
 	public StreamedContent gerarPDF() {
 		try {
-		HashMap parameters = new HashMap();
-		return RelatorioUtil.gerarStreamRelatorioPDF(
-		"WEB-INF/relatorios/Usuario/Usuario.jasper",
-		parameters, "Usuario.pdf");
+			HashMap parameters = new HashMap();
+			return RelatorioUtil.gerarStreamRelatorioPDF("WEB-INF/relatorios/Usuario/Usuario.jasper", parameters,
+					"Usuario.pdf");
 		} catch (Exception e) {
-		e.printStackTrace();
-		JsfUtil.addErrorMessage(e.getMessage());
-		return null;
+			e.printStackTrace();
+			JsfUtil.addErrorMessage(e.getMessage());
+			return null;
 		}
-		}
-
+	}
 
 }
-			

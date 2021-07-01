@@ -14,17 +14,15 @@ import br.upf.ads.topicos.jsf.JsfUtil;
 public class RelModalidadeSubEventoBean {
 	public StreamedContent gerarPDF() {
 		try {
-		HashMap parameters = new HashMap();
-		return RelatorioUtil.gerarStreamRelatorioPDF(
-		"WEB-INF/relatorios/ModalidadeSubEvento/ModalidadeSubEvento.jasper",
-		parameters, "ModalidadeSubEvento.pdf");
+			HashMap parameters = new HashMap();
+			return RelatorioUtil.gerarStreamRelatorioPDF(
+					"WEB-INF/relatorios/ModalidadeSubEvento/ModalidadeSubEvento.jasper", parameters,
+					"ModalidadeSubEvento.pdf");
 		} catch (Exception e) {
-		e.printStackTrace();
-		JsfUtil.addErrorMessage(e.getMessage());
-		return null;
+			e.printStackTrace();
+			JsfUtil.addErrorMessage(e.getMessage());
+			return null;
 		}
-		}
-
+	}
 
 }
-			
