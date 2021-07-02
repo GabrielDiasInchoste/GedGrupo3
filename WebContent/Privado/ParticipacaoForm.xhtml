@@ -51,6 +51,16 @@
 
 				<p:ajax event="rowSelect" update="consultar editar" />
 
+				<p:column headerText="Id" sortBy="#{p.id}" sortOrder="asc"
+					filterBy="#{p.id}" filterMatchMode="exact">
+					<h:outputText value="#{p.id}" />
+				</p:column>
+				
+				<p:column headerText="Pessoa" sortBy="#{p.pessoa.nome}"
+					sortOrder="asc" filterBy="#{p.pessoa.nome}" filterMatchMode="exact">
+					<h:outputText value="#{p.pessoa.nome}" required="true" />
+				</p:column>
+				
 				<p:column headerText="Horas que Participou"
 					sortBy="#{p.horasParticipou}" filterBy="#{p.horasParticipou}"
 					filterMatchMode="exact">
@@ -63,16 +73,12 @@
 					<p:graphicImage id="imagem" stream="false"
 						value="#{p.getArquivoStream()}" />
 				</p:column>
-				
-				<p:column headerText="Pessoa" sortBy="#{p.pessoa.nome}"
-					sortOrder="asc" filterBy="#{p.pessoa.nome}"
-					filterMatchMode="exact">
-					<h:outputText value="#{p.pessoa.nome}" required="true" />
-				</p:column>
-				
-				<p:column headerText="ModalidadeSubEvento" sortBy="#{p.modalidadeSubEvento.id}"
-					sortOrder="asc" filterBy="#{p.modalidadeSubEvento.id}"
-					filterMatchMode="exact">
+
+
+
+				<p:column headerText="ModalidadeSubEvento"
+					sortBy="#{p.modalidadeSubEvento.id}" sortOrder="asc"
+					filterBy="#{p.modalidadeSubEvento.id}" filterMatchMode="exact">
 					<h:outputText value="#{p.modalidadeSubEvento.id}" required="true" />
 				</p:column>
 
