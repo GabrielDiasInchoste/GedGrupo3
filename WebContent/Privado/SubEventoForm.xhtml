@@ -90,6 +90,19 @@
 					</h:outputText>
 				</p:column>
 
+				<p:column headerText="Evento" sortBy="#{p.evento.descricao}"
+					sortOrder="asc" filterBy="#{p.evento.descricao}"
+					filterMatchMode="exact">
+					<h:outputText value="#{p.evento.descricao}" required="true" />
+				</p:column>
+
+				<p:column headerText="Tipo Evento" sortBy="#{p.tipoEvento.descricao}"
+					sortOrder="asc" filterBy="#{p.tipoEvento.descricao}"
+					filterMatchMode="exact">
+					<h:outputText value="#{p.tipoEvento.descricao}" required="true" />
+				</p:column>
+
+
 			</p:dataTable>
 		</h:form>
 

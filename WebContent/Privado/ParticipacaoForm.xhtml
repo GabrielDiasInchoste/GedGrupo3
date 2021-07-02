@@ -59,11 +59,22 @@
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Imagem" >
-						<p:graphicImage id="imagem" stream="false" 
-						value="#{p.getArquivoStream()}"/>	
-				</p:column> 
-
+				<p:column headerText="Imagem">
+					<p:graphicImage id="imagem" stream="false"
+						value="#{p.getArquivoStream()}" />
+				</p:column>
+				
+				<p:column headerText="Pessoa" sortBy="#{p.pessoa.nome}"
+					sortOrder="asc" filterBy="#{p.pessoa.nome}"
+					filterMatchMode="exact">
+					<h:outputText value="#{p.pessoa.nome}" required="true" />
+				</p:column>
+				
+				<p:column headerText="ModalidadeSubEvento" sortBy="#{p.modalidadeSubEvento.id}"
+					sortOrder="asc" filterBy="#{p.modalidadeSubEvento.id}"
+					filterMatchMode="exact">
+					<h:outputText value="#{p.modalidadeSubEvento.id}" required="true" />
+				</p:column>
 
 			</p:dataTable>
 		</h:form>
@@ -83,23 +94,26 @@
 					value="#{participacaoBean.selecionado.pessoa}"
 					converter="pessoaConverter"
 					completeMethod="#{participacaoBean.completePessoa}" />
-					
-				<p:outputLabel value="ModalidadeSubEvento" for="inputModalidadeSubEvento" />
-				<p:autoComplete id="inputModalidadeSubEvento" style="width:600px" dropdown="true"
-					multiple="false" forceSelection="true" var="modalidadeSubEvento"
-					itemLabel="#{modalidadeSubEvento.id}" itemValue="#{modalidadeSubEvento}"
+
+				<p:outputLabel value="ModalidadeSubEvento"
+					for="inputModalidadeSubEvento" />
+				<p:autoComplete id="inputModalidadeSubEvento" style="width:600px"
+					dropdown="true" multiple="false" forceSelection="true"
+					var="modalidadeSubEvento" itemLabel="#{modalidadeSubEvento.id}"
+					itemValue="#{modalidadeSubEvento}"
 					value="#{participacaoBean.selecionado.modalidadeSubEvento}"
 					converter="modalidadeSubEventoConverter"
 					completeMethod="#{participacaoBean.completeModalidadeSubEvento}" />
 
 				<p:outputLabel value="Horas de Participação"></p:outputLabel>
-                <p:inputNumber value="#{participacaoBean.selecionado.horasParticipou}"></p:inputNumber>
+				<p:inputNumber
+					value="#{participacaoBean.selecionado.horasParticipou}"></p:inputNumber>
 
 				<p:outputLabel value="Arquivo"></p:outputLabel>
-				<p:fileUpload listener="#{participacaoBean.handleFileUpload}" mode="advanced"
-					dragDropSupport="true" 
-					sizeLimit="1000000" fileLimit="1"
-					validateContentType="true" accept=".gif,.jpg,.jpeg,.png"/>
+				<p:fileUpload listener="#{participacaoBean.handleFileUpload}"
+					mode="advanced" dragDropSupport="true" sizeLimit="1000000"
+					fileLimit="1" validateContentType="true"
+					accept=".gif,.jpg,.jpeg,.png" />
 
 
 				<p:commandButton value="Salvar" ajax="true"

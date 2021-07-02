@@ -58,9 +58,22 @@
 					<h:outputText value="#{p.id}" required="true" />
 				</p:column>
 
-				<p:column headerText="Template" sortBy="#{p.template.descricao}" sortOrder="asc"
-					filterBy="#{p.template.descricao}" filterMatchMode="exact">
+				<p:column headerText="Template" sortBy="#{p.template.descricao}"
+					sortOrder="asc" filterBy="#{p.template.descricao}"
+					filterMatchMode="exact">
 					<h:outputText value="#{p.template.descricao}" required="true" />
+				</p:column>
+
+				<p:column headerText="Modalidade" sortBy="#{p.modalidade.descricao}"
+					sortOrder="asc" filterBy="#{p.modalidade.descricao}"
+					filterMatchMode="exact">
+					<h:outputText value="#{p.modalidade.descricao}" required="true" />
+				</p:column>
+
+				<p:column headerText="SubEvento" sortBy="#{p.subEvento.descricao}"
+					sortOrder="asc" filterBy="#{p.subEvento.descricao}"
+					filterMatchMode="exact">
+					<h:outputText value="#{p.subEvento.descricao}" required="true" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
